@@ -1,0 +1,33 @@
+foreach($signs as $sign){
+
+$urls = [
+"daily/$sign",
+"daily/previous/$sign",
+"daily/next/$sign"
+];
+
+foreach($urls as $url){
+
+$response = Http::withBasicAuth($user,$pass)
+->get("https://json.astrologyapi.com/v1/sun_sign_prediction/".$url);
+
+$data = $response->json();
+
+DailyHoroscope::updateOrCreate(
+[
+'sun_sign'=>$data['sun_sign'],
+'prediction_date'=>Carbon::createFromFormat('d-m-Y',$data['prediction_date'])->format('Y-m-d')
+],
+[
+'personal_life'=>$data['prediction']['personal_life'],
+'profession'=>$data['prediction']['profession'],
+'health'=>$data['prediction']['health'],
+'emotions'=>$data['prediction']['emotions'],
+'travel'=>$data['prediction']['travel'],
+'luck'=>$data['prediction']['luck']
+]
+);
+
+}
+
+}
