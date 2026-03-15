@@ -4,21 +4,39 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     *
+     * @return void
      */
-    public function register(): void
+    public function register()
     {
         //
     }
 
     /**
      * Bootstrap any application services.
+     *
+     * @return void
      */
-    public function boot(): void
-    {
-        //
-    }
+   
+        public function boot()
+        {
+            View::composer('admin.*', function ($view) {
+                $view->with('admin', Auth::guard('super_admin')->user());
+            });
+
+            // For supplier views
+            View::composer('supplier.*', function ($view) {
+                $view->with('profile', Auth::guard('supplier')->user());
+            });
+
+        }
+
+
 }

@@ -31,3 +31,9 @@ DailyHoroscope::updateOrCreate(
 }
 
 }
+
+------------ db details ---------
+
+u912758906_IO_Psychics
+
+IO_Psychics_2026
