@@ -25,33 +25,41 @@ class AdminLoginController extends Controller
         $admin = Auth::guard('super_admin')->user();
         return view('admin.dashboard', compact('admin'));
     }
-    public function login(Request $request)
+     public function login(Request $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
+
+       $request->validate([
+             'email'    => 'required|email',
             'password' => 'required|string',
-            'captcha' => 'required|string',
+            'captcha'      => 'required|string',
         ]);
 
-        // CAPTCHA validation
+
+         $credentials = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|string'
+        ]);
+
+
+         // CAPTCHA validation
         if (
             !session()->has('captcha_text') ||
             now()->greaterThan(session('captcha_expires')) ||
-            strtolower($request->captcha) !== strtolower(session('captcha_text'))
+            $request->captcha !== session('captcha_text')
         ) {
             return back()
                 ->withErrors(['captcha' => 'Invalid or expired CAPTCHA'])
                 ->withInput();
         }
 
-        session()->forget(['captcha_text','captcha_expires']);
+        // Clear CAPTCHA after successful validation
+        session()->forget(['captcha_text', 'captcha_expires']);
 
-        $credentials = $request->only('email','password');
 
         if (Auth::guard('super_admin')->attempt($credentials)) {
-
             $request->session()->regenerate();
 
+            // Optionally update last login
             $admin = Auth::guard('super_admin')->user();
             $admin->last_login = now();
             $admin->save();
