@@ -13,8 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        echo 'hello';
-        //return view('frontend.index');
+        return view('frontend.index');
     }
 
     public function aboutUs()
