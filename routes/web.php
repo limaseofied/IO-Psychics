@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Api\HoroscopeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\SpecialityController;
+use App\Http\Controllers\Admin\ToolController;
+use App\Http\Controllers\Admin\ReadingStyleController;
+use App\Http\Controllers\Admin\SkillController;
 
 // -------------------
 // ADMIN (Super Admin)
@@ -81,6 +85,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
             Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
+            Route::resource('specialities', SpecialityController::class);
+            Route::resource('tools', ToolController::class);
+            Route::resource('reading-styles', ReadingStyleController::class);
+            Route::resource('skills', SkillController::class);
     
     });
 });

@@ -22,7 +22,43 @@
             </a>
         </li>
 
-        <li class="menu-dropdown {{ Request::is('admin/blog*') || Request::is('admin/category*') ? 'open active' : '' }}">
+         <li class="menu-dropdown {{ Request::is('admin/blog*') || Request::is('admin/category*') ? 'open active' : '' }}">
+    
+    <a href="#" class="menu-dropdown">
+        <i class="menu-icon glyphicon glyphicon-book"></i>
+        <span class="menu-text"> Master Data</span>
+        <i class="menu-expand"></i>
+    </a>
+
+    <ul class="submenu">      
+
+        <li class="{{ Request::is('admin/specialities*') ? 'active' : '' }}">
+            <a href="{{ url('admin/specialities') }}">
+                <span class="menu-text">Specialities</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('admin/tools*') ? 'active' : '' }}">
+            <a href="{{ url('admin/tools') }}">
+                <span class="menu-text"> Tools </span>
+            </a>
+        </li>
+        <li class="{{ Request::is('admin/skills*') ? 'active' : '' }}">
+            <a href="{{ url('admin/skills') }}">
+                <span class="menu-text"> Skills </span>
+            </a>
+        </li>
+        <li class="{{ Request::is('admin/reading_style*') ? 'active' : '' }}">
+            <a href="{{ url('admin/reading_style') }}">
+                <span class="menu-text"> Reading Style </span>
+            </a>
+        </li>
+
+    </ul>
+
+</li>
+
+
+    <li class="menu-dropdown {{ Request::is('admin/blog*') || Request::is('admin/category*') ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2026 at 07:02 AM
+-- Generation Time: Mar 17, 2026 at 01:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin_master` (
 --
 
 INSERT INTO `admin_master` (`id`, `name`, `phone`, `email`, `password`, `last_login`, `created_on`, `updated_on`, `status`) VALUES
-(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-16 07:16:27', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
+(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-17 12:39:56', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
 
 -- --------------------------------------------------------
 
@@ -372,20 +372,6 @@ CREATE TABLE `tools` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topics`
---
-
-CREATE TABLE `topics` (
-  `topic_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `slug` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transactions`
 --
 
@@ -540,14 +526,6 @@ ALTER TABLE `tools`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`topic_id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD UNIQUE KEY `slug` (`slug`);
-
---
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -661,12 +639,6 @@ ALTER TABLE `subscription_plans`
 --
 ALTER TABLE `tools`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `topics`
---
-ALTER TABLE `topics`
-  MODIFY `topic_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transactions`
