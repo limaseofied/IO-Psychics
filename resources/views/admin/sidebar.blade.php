@@ -22,22 +22,31 @@
             </a>
         </li>
 
-    {{-- <li class="menu-dropdown">
-        
+        <li class="menu-dropdown {{ Request::is('admin/blog*') || Request::is('admin/category*') ? 'open active' : '' }}">
+    
     <a href="#" class="menu-dropdown">
-        <i class="menu-icon glyphicon glyphicon-tasks"></i>
-        <span class="menu-text"> ------ </span>
+        <i class="menu-icon glyphicon glyphicon-book"></i>
+        <span class="menu-text"> Blog Management </span>
         <i class="menu-expand"></i>
     </a>
 
-    <ul class="submenu">
-        <li class="">
-            <a href="">
-                <span class="menu-text">---------</span>
+    <ul class="submenu">       
+
+        {{-- Manage Categories --}}
+        <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
+            <a href="{{ url('admin/category') }}">
+                <span class="menu-text"> Manage Categories </span>
             </a>
         </li>
-        
+        {{-- Manage Blogs --}}
+        <li class="{{ Request::is('admin/blog*') ? 'active' : '' }}">
+            <a href="{{ url('admin/blog') }}">
+                <span class="menu-text"> Manage Blogs </span>
+            </a>
+        </li>
+
     </ul>
-    </li>  --}}
-    <!-- /Sidebar Menu -->
+
+</li>
+
 </div>

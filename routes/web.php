@@ -8,6 +8,8 @@ use App\Http\Controllers\SuperAdminForgotPasswordController;
 use App\Http\Controllers\Admin\HoroscopeSignController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Api\HoroscopeController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BlogController;
 
 // -------------------
 // ADMIN (Super Admin)
@@ -63,6 +65,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('horoscope-signs/{id}', [HoroscopeSignController::class,'delete'])->name('signs.destroy');
 
 
+             // Blog Routes (Developed by Lima Mohanty :: 05-Jan-2026)
+            Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+            Route::get('blog/create', [BlogController::class, 'create'])->name('blog.create');
+            Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
+            Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+            Route::post('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+            Route::delete('blog/{id}', [BlogController::class, 'destroy'])->name('blog.delete');
+
+            // Category Routes (Developed by Lima Mohanty :: 05-Jan-2026)
+            Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+            Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+            Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+            Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+            Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+            Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
     
     });
