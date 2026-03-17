@@ -58,3 +58,9 @@ if user subscribed a plan and midway he can upgrade to higher plan
 ------------
 
 ALTER TABLE `reading_styles` ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `name`, ADD `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+
+------------ To do ---------------
+Sign up 
+subscription plan master 
+pay per session master
+Guide master
