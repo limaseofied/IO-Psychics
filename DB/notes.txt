@@ -52,3 +52,9 @@ subscription plan (Discovery/30 min/ core guide/80$ , Quest/60 min/ senior duide
 pay per session plan (15min/50$, 30min/90$, 45min/130$, 60min/169$)
 
 if user subscribed a plan and midway he can upgrade to higher plan
+
+
+
+------------
+
+ALTER TABLE `reading_styles` ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `name`, ADD `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;

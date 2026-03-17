@@ -92,15 +92,27 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('specialities/update/{id}', [SpecialityController::class, 'update'])->name('specialities.update');
             Route::delete('specialities/{id}', [SpecialityController::class, 'destroy'])->name('specialities.delete');
 
-             Route::get('tools', [ToolController::class, 'index'])->name('tools.index');
+            Route::get('tools', [ToolController::class, 'index'])->name('tools.index');
             Route::get('tools/create', [ToolController::class, 'create'])->name('tools.create');
             Route::post('tools/store', [ToolController::class, 'store'])->name('tools.store');
             Route::get('tools/edit/{id}', [ToolController::class, 'edit'])->name('tools.edit');
             Route::post('tools/update/{id}', [ToolController::class, 'update'])->name('tools.update');
             Route::delete('tools/{id}', [ToolController::class, 'destroy'])->name('tools.delete');
 
-            Route::resource('reading-styles', ReadingStyleController::class);
-            Route::resource('skills', SkillController::class);
+            Route::get('readingstyles', [ReadingStyleController::class, 'index'])->name('readingstyles.index');
+            Route::get('readingstyles/create', [ReadingStyleController::class, 'create'])->name('readingstyles.create');
+            Route::post('readingstyles/store', [ReadingStyleController::class, 'store'])->name('readingstyles.store');
+            Route::get('readingstyles/edit/{id}', [ReadingStyleController::class, 'edit'])->name('readingstyles.edit');
+            Route::post('readingstyles/update/{id}', [ReadingStyleController::class, 'update'])->name('readingstyles.update');
+            Route::delete('readingstyles/{id}', [ReadingStyleController::class, 'destroy'])->name('readingstyles.delete');
+
+             Route::get('skills', [SkillController::class, 'index'])->name('skills.index');
+            Route::get('skills/create', [SkillController::class, 'create'])->name('skills.create');
+            Route::post('skills/store', [SkillController::class, 'store'])->name('skills.store');
+            Route::get('skills/edit/{id}', [SkillController::class, 'edit'])->name('skills.edit');
+            Route::post('skills/update/{id}', [SkillController::class, 'update'])->name('skills.update');
+            Route::delete('skills/{id}', [SkillController::class, 'destroy'])->name('skills.delete');
+
     
     });
 });

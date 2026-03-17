@@ -22,7 +22,7 @@
             </a>
         </li>
 
-         <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/reading_style*') ? 'open active' : '' }}">
+         <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
@@ -47,8 +47,8 @@
                 <span class="menu-text"> Skills </span>
             </a>
         </li>
-        <li class="{{ Request::is('admin/reading_style*') ? 'active' : '' }}">
-            <a href="{{ url('admin/reading_style') }}">
+        <li class="{{ Request::is('admin/readingstyles*') ? 'active' : '' }}">
+            <a href="{{ url('admin/readingstyles') }}">
                 <span class="menu-text"> Reading Style </span>
             </a>
         </li>

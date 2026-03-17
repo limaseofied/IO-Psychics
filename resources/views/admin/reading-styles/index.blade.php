@@ -1,14 +1,14 @@
 @extends('admin.layout')
-@section('title', 'Specialities')
+@section('title', 'Reading Style')
 
 @section('content')
 <div class="page-content">
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-                Specialities
-                <a href="{{ route('admin.specialities.create') }}" class="btn btn-primary">
-                    <i class="fa fa-plus"></i> Add Specialities
+                Reading Style
+                <a href="{{ route('admin.readingstyles.create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Add Reading Style
                 </a>
             </h1>
         </div>
@@ -51,24 +51,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($speciality as $index => $s)
+                    @foreach($read as $index => $s)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $s->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($s->created_at)->format('d-m-Y') }}</td>
                             <td>
-                                <a href="{{ route('admin.specialities.edit', $s->id) }}" class="btn btn-xs btn-warning">
+                                <a href="{{ route('admin.readingstyles.edit', $s->id) }}" class="btn btn-xs btn-warning">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
 
-                                <a href="{{ route('admin.specialities.delete', $s->id) }}"
+                                <a href="{{ route('admin.readingstyles.delete', $s->id) }}"
                                    class="btn btn-xs btn-danger"
                                    onclick="event.preventDefault(); 
                                             if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $s->id }}').submit(); }">
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
 
-                                <form id="delete-form-{{ $s->id }}" action="{{ route('admin.specialities.delete', $s->id) }}" method="POST" style="display:none;">
+                                <form id="delete-form-{{ $s->id }}" action="{{ route('admin.readingstyles.delete', $s->id) }}" method="POST" style="display:none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
