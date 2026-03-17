@@ -147,6 +147,39 @@ $(document).ready(function() {
     <!-- AUTO LOGOUT SCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
+     const maxChars = 3000;
+    const $charCount = $('#charCount');
+
+     $('#answer').summernote({
+    height: 200,
+    toolbar: [
+        ['style', ['bold', 'italic', 'underline']],
+        ['para', ['ul', 'ol']],
+        ['insert', ['link']],
+        ['view', ['codeview']]
+    ],
+    callbacks: {
+        onInit: function() {
+            let text = $(this).summernote('code').replace(/<[^>]*>/g, '');
+            $charCount.text(text.length);
+        },
+        onKeyup: function() {
+            let text = $(this).summernote('code').replace(/<[^>]*>/g, '');
+            let length = text.length;
+
+            if (length > maxChars) {
+                alert('Max 2000 characters allowed');
+                $(this).summernote('code', text.substring(0, maxChars));
+                length = maxChars;
+            }
+
+            $charCount.text(length);
+        }
+    }
+});
+
+
             const AUTO_LOGOUT_TIME = 15 * 60 * 1000; // 15 minutes
             let logoutTimer;
 
@@ -421,45 +454,7 @@ $(document).ready(function() {
         });
 
     </script>
-    <!--Google Analytics::Demo Only-->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-52103994-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
     
-<script>
-$('#country').on('change', function () {
-    let countryId = $(this).val();
-    $('#destination').html('<option value="">Loading...</option>');
-
-    if (countryId) {
-        $.ajax({
-             url: "{{ url('admin/get-destinations') }}/" + countryId,
-            type: "GET",
-            success: function (data) {
-                $('#destination').html('<option value="">Select Destination</option>');
-                $.each(data, function (key, destination) {
-                    $('#destination').append(
-                        '<option value="' + destination.id + '">' + destination.destination_name + '</option>'
-                    );
-                });
-            }
-        });
-    } else {
-        $('#destination').html('<option value="">Select Destination</option>');
-    }
-});
-</script>
-
 
     @stack('scripts')
 </body>

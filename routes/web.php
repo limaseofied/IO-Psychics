@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\SpecialityController;
 use App\Http\Controllers\Admin\ToolController;
 use App\Http\Controllers\Admin\ReadingStyleController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\FaqController;
+
 
 // -------------------
 // ADMIN (Super Admin)
@@ -106,12 +108,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('readingstyles/update/{id}', [ReadingStyleController::class, 'update'])->name('readingstyles.update');
             Route::delete('readingstyles/{id}', [ReadingStyleController::class, 'destroy'])->name('readingstyles.delete');
 
-             Route::get('skills', [SkillController::class, 'index'])->name('skills.index');
+            Route::get('skills', [SkillController::class, 'index'])->name('skills.index');
             Route::get('skills/create', [SkillController::class, 'create'])->name('skills.create');
             Route::post('skills/store', [SkillController::class, 'store'])->name('skills.store');
             Route::get('skills/edit/{id}', [SkillController::class, 'edit'])->name('skills.edit');
             Route::post('skills/update/{id}', [SkillController::class, 'update'])->name('skills.update');
             Route::delete('skills/{id}', [SkillController::class, 'destroy'])->name('skills.delete');
+
+            Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
+            Route::get('faq/create', [FaqController::class, 'create'])->name('faq.create');
+            Route::post('faq/store', [FaqController::class, 'store'])->name('faq.store');
+            Route::get('faq/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
+            Route::post('faq/update/{id}', [FaqController::class, 'update'])->name('faq.update');
+            Route::delete('faq/{id}', [FaqController::class, 'destroy'])->name('faq.delete');
 
     
     });
