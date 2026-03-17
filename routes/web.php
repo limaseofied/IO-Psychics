@@ -85,8 +85,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
             Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
-            Route::resource('specialities', SpecialityController::class);
-            Route::resource('tools', ToolController::class);
+             Route::get('specialities', [SpecialityController::class, 'index'])->name('specialities.index');
+            Route::get('specialities/create', [SpecialityController::class, 'create'])->name('specialities.create');
+            Route::post('specialities/store', [SpecialityController::class, 'store'])->name('specialities.store');
+            Route::get('specialities/edit/{id}', [SpecialityController::class, 'edit'])->name('specialities.edit');
+            Route::post('specialities/update/{id}', [SpecialityController::class, 'update'])->name('specialities.update');
+            Route::delete('specialities/{id}', [SpecialityController::class, 'destroy'])->name('specialities.delete');
+
+             Route::get('tools', [ToolController::class, 'index'])->name('tools.index');
+            Route::get('tools/create', [ToolController::class, 'create'])->name('tools.create');
+            Route::post('tools/store', [ToolController::class, 'store'])->name('tools.store');
+            Route::get('tools/edit/{id}', [ToolController::class, 'edit'])->name('tools.edit');
+            Route::post('tools/update/{id}', [ToolController::class, 'update'])->name('tools.update');
+            Route::delete('tools/{id}', [ToolController::class, 'destroy'])->name('tools.delete');
+
             Route::resource('reading-styles', ReadingStyleController::class);
             Route::resource('skills', SkillController::class);
     

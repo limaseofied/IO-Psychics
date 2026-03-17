@@ -22,7 +22,7 @@
             </a>
         </li>
 
-         <li class="menu-dropdown {{ Request::is('admin/blog*') || Request::is('admin/category*') ? 'open active' : '' }}">
+         <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/reading_style*') ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
