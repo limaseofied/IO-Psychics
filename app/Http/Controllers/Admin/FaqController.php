@@ -24,6 +24,12 @@ class FaqController extends Controller
             'category' => 'required',
         ]);
 
+        if (trim(strip_tags($request->answer)) == '') {
+            return back()
+                ->withErrors(['answer' => 'Answer is required'])
+                ->withInput();
+        }
+
         Faq::create([
             'question' => $request->question,
             'answer' => $request->answer,

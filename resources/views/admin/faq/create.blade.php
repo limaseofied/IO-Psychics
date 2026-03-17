@@ -98,7 +98,7 @@
                                 </label>
                                 <div class="col-lg-8">
 
-                                     <textarea name="answer" id="answer" required class="form-control editor">{{ old('answer') }}</textarea>
+                                     <textarea name="answer" id="answer" class="form-control editor">{{ old('answer') }}</textarea>
                                            <div class="char-count"><span id="charCount">0</span> / 2000</div>
                                     @error('answer')
                                         <small class="text-danger">{{ $message }}</small>
@@ -112,18 +112,23 @@
                                     Category <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-8">
-                                    <select name="category"  id="category" class="form-control" required>
-                                    <option value="">-- Select Category --</option>                                   
-                                        <option value="Billing">Billing</option>
-                                        <option value="Subscription">Subscription </option>
-                                        <option value="Help Center">Help Center</option>
-                                        <option value="How it Works">How it Works</option>
-                                        <option value="Horoscope">Horoscope</option>
-                                        <option value="Tarrot">Tarrot</option>
-                                        <option value="Guide">Guide</option>
-                                        <option value="Tarrot">Tarrot</option>
-                                   
-                                </select>
+                                    <select name="category" id="category" class="form-control" required>
+                                        <option value="">-- Select Category --</option>                                   
+                                        
+                                        <option value="Billing" {{ old('category') == 'Billing' ? 'selected' : '' }}>Billing</option>
+                                        
+                                        <option value="Subscription" {{ old('category') == 'Subscription' ? 'selected' : '' }}>Subscription</option>
+                                        
+                                        <option value="Help Center" {{ old('category') == 'Help Center' ? 'selected' : '' }}>Help Center</option>
+                                        
+                                        <option value="How it Works" {{ old('category') == 'How it Works' ? 'selected' : '' }}>How it Works</option>
+                                        
+                                        <option value="Horoscope" {{ old('category') == 'Horoscope' ? 'selected' : '' }}>Horoscope</option>
+                                        
+                                        <option value="Tarrot" {{ old('category') == 'Tarrot' ? 'selected' : '' }}>Tarrot</option>
+                                        
+                                        <option value="Guide" {{ old('category') == 'Guide' ? 'selected' : '' }}>Guide</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -159,15 +164,23 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
         }
 
-        if (form.answer.value.trim() === '') {
-            alert('Answer is required');
-            e.preventDefault();
-        }
-
         if (form.category.value === '') {
             alert('Category is required');
             e.preventDefault();
         }
+
+        let content = $('#answer').summernote('code').trim();
+
+        // Remove HTML tags
+        let text = content.replace(/<[^>]*>/g, '').trim();
+
+        if (text.length === 0) {
+            alert('Answer is required');
+            e.preventDefault();
+            return false;
+        }
+
+
     });
 
 

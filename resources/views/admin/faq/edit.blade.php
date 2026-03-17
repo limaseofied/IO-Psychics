@@ -92,7 +92,7 @@
                                 </label>
                                 <div class="col-lg-8">
 
-                                     <textarea name="answer" id="answer" required class="form-control editor">{{ old('answer',$faq->answer) }}</textarea>
+                                     <textarea name="answer" id="answer" class="form-control editor">{{ old('answer',$faq->answer) }}</textarea>
                                            <div class="char-count"><span id="charCount">0</span> / 2000</div>
                                     @error('answer')
                                         <small class="text-danger">{{ $message }}</small>
@@ -137,4 +137,38 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('FaqForm');
+    form.addEventListener('submit', function (e) {
+        if (form.question.value.trim() === '') {
+            alert('Question is required');
+            e.preventDefault();
+        }
+
+        if (form.category.value === '') {
+            alert('Category is required');
+            e.preventDefault();
+        }
+
+        let content = $('#answer').summernote('code').trim();
+
+        // Remove HTML tags
+        let text = content.replace(/<[^>]*>/g, '').trim();
+
+        if (text.length === 0) {
+            alert('Answer is required');
+            e.preventDefault();
+            return false;
+        }
+
+
+    });
+
+
+});
+
+
+</script>
 @endsection
