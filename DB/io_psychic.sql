@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2026 at 01:52 PM
+-- Generation Time: Mar 17, 2026 at 04:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin_master` (
 --
 
 INSERT INTO `admin_master` (`id`, `name`, `phone`, `email`, `password`, `last_login`, `created_on`, `updated_on`, `status`) VALUES
-(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-17 12:39:56', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
+(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-17 13:55:15', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
 
 -- --------------------------------------------------------
 
@@ -79,21 +79,35 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'category1', 'category1', '2026-03-17 08:49:18', '2026-03-17 08:49:18'),
+(2, 'catehory1', 'catehory1', '2026-03-17 08:49:25', '2026-03-17 08:49:25');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faq`
+-- Table structure for table `faqs`
 --
 
-CREATE TABLE `faq` (
+CREATE TABLE `faqs` (
   `id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
   `answer` text NOT NULL,
   `category` varchar(100) DEFAULT NULL,
-  `display_order` int(11) DEFAULT 0,
-  `is_published` tinyint(1) DEFAULT 1,
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faqs`
+--
+
+INSERT INTO `faqs` (`id`, `question`, `answer`, `category`, `created_at`, `updated_at`) VALUES
+(1, 'How does it work?', '<p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Seeking answers? Craving guidance but feeling uncertain? You\'re not alone. We\'ve been there and we understand that new experiences can be stressful. Whether you\'re seeking guidance on love, career, or spiritual growth, you\'re here for a reason — discover why in just 3 easy steps.</p><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Here\'s how you can start experiencing the transformative power of an online psychic reading:</p><ol style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\"><li><span style=\"font-weight: 700;\">Select a Guide:</span>&nbsp;Explore our list of gifted Guides and find the one that resonates with your intentions for the most accurate reading tailored just for you.</li><li><span style=\"font-weight: 700;\">Create your account:</span>&nbsp;Register for an account with IO Psychics. Don\'t worry — it\'s quick and easy.</li><li><span style=\"font-weight: 700;\">Connect with a Guide:</span>&nbsp;Connect via phone, chat, or video and find clarity, peace, and purpose without judgment.</li></ol><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Get ready to embark on a journey of self-discovery, empowerment, and spiritual enlightenment. Connect with one of our trusted Guides today and unlock the secrets of your future!</p><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Want to give it a try? Get 5 minutes\' worth of free online psychic readings today! *</p>', 'How it Works', '2026-03-17 15:42:57', '2026-03-17 10:12:57');
 
 -- --------------------------------------------------------
 
@@ -301,8 +315,19 @@ INSERT INTO `pay_per_session_plans` (`id`, `duration_min`, `price`) VALUES
 
 CREATE TABLE `reading_styles` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reading_styles`
+--
+
+INSERT INTO `reading_styles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Compassionate', '2026-03-17 14:45:33', '2026-03-17 14:45:33'),
+(2, 'Direct', '2026-03-17 14:45:41', '2026-03-17 14:45:41'),
+(3, 'Inspirational', '2026-03-17 14:45:48', '2026-03-17 14:45:48');
 
 -- --------------------------------------------------------
 
@@ -324,6 +349,31 @@ CREATE TABLE `sessions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `skills`
+--
+
+CREATE TABLE `skills` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Tarot Card Readers', '2026-03-17 09:21:37', '2026-03-17 09:21:37'),
+(2, 'Clairaudients', '2026-03-17 09:21:46', '2026-03-17 09:21:46'),
+(3, 'Clairvoyants', '2026-03-17 09:21:53', '2026-03-17 09:21:53'),
+(4, 'Dream Exploration', '2026-03-17 09:21:59', '2026-03-17 09:21:59'),
+(5, 'Empaths', '2026-03-17 09:22:06', '2026-03-17 09:22:06'),
+(6, 'Remote Viewing', '2026-03-17 09:22:13', '2026-03-17 09:22:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `specialities`
 --
 
@@ -333,6 +383,27 @@ CREATE TABLE `specialities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `specialities`
+--
+
+INSERT INTO `specialities` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Career & Finance', '2026-03-17 08:40:52', '2026-03-17 08:40:52'),
+(2, 'Conflict & Resolution', '2026-03-17 08:42:07', '2026-03-17 08:42:07'),
+(3, 'Decision Making', '2026-03-17 08:42:19', '2026-03-17 08:42:19'),
+(4, 'Dream Exploration', '2026-03-17 08:42:27', '2026-03-17 08:42:27'),
+(5, 'Energy Healer', '2026-03-17 08:42:34', '2026-03-17 08:42:34'),
+(6, 'Future Outlook', '2026-03-17 08:42:40', '2026-03-17 08:42:40'),
+(7, 'Grief', '2026-03-17 08:42:47', '2026-03-17 08:42:47'),
+(8, 'Health & Wellness', '2026-03-17 08:42:55', '2026-03-17 08:42:55'),
+(9, 'Lost Items', '2026-03-17 08:43:02', '2026-03-17 08:43:02'),
+(10, 'Lost Loved Ones & Pets', '2026-03-17 08:43:10', '2026-03-17 08:43:10'),
+(11, 'Love & Relationships', '2026-03-17 08:43:19', '2026-03-17 08:43:19'),
+(12, 'Past Lives', '2026-03-17 08:43:29', '2026-03-17 08:43:29'),
+(13, 'Personal Growth', '2026-03-17 08:43:40', '2026-03-17 08:43:40'),
+(14, 'Pets & Animals', '2026-03-17 08:43:46', '2026-03-17 08:43:46'),
+(15, 'Spirituality & Inner Guidance', '2026-03-17 08:43:56', '2026-03-17 08:50:28');
 
 -- --------------------------------------------------------
 
@@ -366,8 +437,23 @@ INSERT INTO `subscription_plans` (`id`, `name`, `duration_min`, `guide_level`, `
 
 CREATE TABLE `tools` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tools`
+--
+
+INSERT INTO `tools` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Astrology', '2026-03-17 14:31:32', '2026-03-17 14:31:32'),
+(2, 'Aura cleansing', '2026-03-17 14:31:39', '2026-03-17 14:31:39'),
+(3, 'Crystals', '2026-03-17 14:31:46', '2026-03-17 14:31:46'),
+(4, 'Holistic Healing/Reiki', '2026-03-17 14:31:54', '2026-03-17 14:31:54'),
+(5, 'Numerology', '2026-03-17 14:32:01', '2026-03-17 14:32:01'),
+(6, 'Pendulum', '2026-03-17 14:32:08', '2026-03-17 14:32:08'),
+(7, 'Tarot', '2026-03-17 14:32:15', '2026-03-17 14:32:15');
 
 -- --------------------------------------------------------
 
@@ -444,9 +530,9 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
--- Indexes for table `faq`
+-- Indexes for table `faqs`
 --
-ALTER TABLE `faq`
+ALTER TABLE `faqs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -508,6 +594,12 @@ ALTER TABLE `sessions`
   ADD KEY `guide_id` (`guide_id`);
 
 --
+-- Indexes for table `skills`
+--
+ALTER TABLE `skills`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `specialities`
 --
 ALTER TABLE `specialities`
@@ -566,13 +658,13 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `faq`
+-- AUTO_INCREMENT for table `faqs`
 --
-ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `faqs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `guides`
@@ -614,7 +706,7 @@ ALTER TABLE `pay_per_session_plans`
 -- AUTO_INCREMENT for table `reading_styles`
 --
 ALTER TABLE `reading_styles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sessions`
@@ -623,10 +715,16 @@ ALTER TABLE `sessions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `specialities`
 --
 ALTER TABLE `specialities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `subscription_plans`
@@ -638,7 +736,7 @@ ALTER TABLE `subscription_plans`
 -- AUTO_INCREMENT for table `tools`
 --
 ALTER TABLE `tools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -669,33 +767,11 @@ ALTER TABLE `blogs`
   ADD CONSTRAINT `fk_blog_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `guides`
---
-ALTER TABLE `guides`
-  ADD CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`speciality_id`) REFERENCES `specialities` (`id`),
-  ADD CONSTRAINT `guides_ibfk_2` FOREIGN KEY (`tool_id`) REFERENCES `tools` (`id`),
-  ADD CONSTRAINT `guides_ibfk_3` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`),
-  ADD CONSTRAINT `guides_ibfk_4` FOREIGN KEY (`reading_style_id`) REFERENCES `reading_styles` (`id`);
-
---
 -- Constraints for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `sessions_ibfk_2` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`id`);
-
---
--- Constraints for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `user_subscriptions`
---
-ALTER TABLE `user_subscriptions`
-  ADD CONSTRAINT `user_subscriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `user_subscriptions_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `subscription_plans` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
