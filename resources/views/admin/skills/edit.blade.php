@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Edit Specialities')
+@section('title', 'Edit Skills')
 
 @section('content')
 <div class="page-content">
@@ -11,9 +11,9 @@
                 <a href="{{ url('admin/dashboard') }}">Home</a>
             </li>
             <li>
-                <a href="{{ url('admin/specialities') }}">Specialities</a>
+                <a href="{{ url('admin/skills') }}">Skills</a>
             </li>
-            <li class="active">Edit Specialities</li>
+            <li class="active">Edit Skills</li>
         </ul>
     </div>
 
@@ -21,10 +21,10 @@
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-               Specialities
+               Skills
                 <small>
                     <i class="fa fa-angle-right"></i>
-                    Edit Specialities
+                    Edit Skills
                 </small>
             </h1>
         </div>
@@ -41,7 +41,7 @@
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="widget radius-bordered">
                     <div class="widget-header">
-                        <span class="widget-caption">Edit Specialities</span>
+                        <span class="widget-caption">Edit Skills</span>
                     </div>
 
                     <div class="widget-body">
@@ -64,7 +64,7 @@
                         @endif
 
                         <form method="POST"
-                              action="{{ route('admin.specialities.update', $specialities->id) }}"
+                              action="{{ route('admin.skills.update', $skills->id) }}"
                               class="form-horizontal">
 
                             @csrf
@@ -77,7 +77,7 @@
                                            name="name"
                                            class="form-control"
                                            placeholder="Enter Name"
-                                           value="{{ old('name', $specialities->name) }}"
+                                           value="{{ old('name', $skills->name) }}"
                                            required>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                             <div class="form-group text-center mt-4">
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-check"></i> Update                                 </button>
-                                <a href="{{ url('admin/specialities') }}" class="btn btn-default">
+                                <a href="{{ url('admin/skills') }}" class="btn btn-default">
                                     <i class="fa fa-arrow-left"></i> Back
                                 </a>
                             </div>

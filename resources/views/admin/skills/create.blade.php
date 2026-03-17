@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Add Specialities')
+@section('title', 'Add Skills')
 
 @section('content')
 <div class="page-content">
@@ -11,9 +11,9 @@
                 <a href="{{ url('admin/dashboard') }}">Home</a>
             </li>
             <li>
-                <a href="{{ url('admin/specialities') }}">Specialities</a>
+                <a href="{{ url('admin/skills') }}">Skills</a>
             </li>
-            <li class="active">Add Specialities</li>
+            <li class="active">Add Skills</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
@@ -22,10 +22,10 @@
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-                Specialities
+                Skills
                 <small>
                     <i class="fa fa-angle-right"></i>
-                    Add Specialities
+                    Add Skills
                 </small>
             </h1>
         </div>
@@ -44,7 +44,7 @@
                 <div class="widget radius-bordered">
                     <div class="widget-header bg-primary">
                         <span class="widget-caption text-white">
-                            <i class="fa fa-folder-open"></i> Add Specialities
+                            <i class="fa fa-folder-open"></i> Add Skills
                         </span>
                     </div>
 
@@ -68,9 +68,9 @@
                         @endif
 
                         <form method="POST"
-                              action="{{ route('admin.specialities.store') }}"
+                              action="{{ route('admin.skills.store') }}"
                               class="form-horizontal"
-                              id="SpecialitiesForm">
+                              id="skillsForm">
 
                             @csrf
 
@@ -97,7 +97,7 @@
                                 <button type="submit" class="btn btn-success">
                                     <i class="fa fa-check"></i> Save 
                                 </button>
-                                <a href="{{ url('admin/specialities') }}" class="btn btn-secondary">
+                                <a href="{{ url('admin/skills') }}" class="btn btn-secondary">
                                     <i class="fa fa-arrow-left"></i> Back
                                 </a>
                             </div>
@@ -115,7 +115,7 @@
 @section('scripts')
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById('SpecialitiesForm');
+    const form = document.getElementById('skillsForm');
     form.addEventListener('submit', function (e) {
         if (form.name.value.trim() === '') {
             alert('Name is required');
