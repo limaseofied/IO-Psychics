@@ -37,3 +37,18 @@ DailyHoroscope::updateOrCreate(
 u912758906_IO_Psychics
 
 IO_Psychics_2026
+
+--------------
+
+master table list:
+
+specialities/topic
+tools 
+skill
+reading style 
+guides 
+
+subscription plan (Discovery/30 min/ core guide/80$ , Quest/60 min/ senior duide/140$, Odyssey/90min/master guide/200$)
+pay per session plan (15min/50$, 30min/90$, 45min/130$, 60min/169$)
+
+if user subscribed a plan and midway he can upgrade to higher plan

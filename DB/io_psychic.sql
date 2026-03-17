@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2026 at 05:40 PM
+-- Generation Time: Mar 17, 2026 at 07:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,96 +44,49 @@ CREATE TABLE `admin_master` (
 --
 
 INSERT INTO `admin_master` (`id`, `name`, `phone`, `email`, `password`, `last_login`, `created_on`, `updated_on`, `status`) VALUES
-(1, 'Super Admin Panel', '7978817539', 'iopsychics@gmail.com', '$2y$12$v3YjlHagKerMfzMgV8UFt.H33i7Dv9R/aYmyymaveYRLgBpjvIxO.', '2026-03-10 14:08:06', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
+(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-16 07:16:27', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billing_transactions`
+-- Table structure for table `blogs`
 --
 
-CREATE TABLE `billing_transactions` (
-  `billing_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `subscription_id` int(11) DEFAULT NULL,
-  `payment_method_id` int(11) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `status` enum('pending','completed','failed','refunded') DEFAULT 'pending',
-  `transaction_date` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_categories`
---
-
-CREATE TABLE `blog_categories` (
-  `category_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `slug` varchar(100) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_posts`
---
-
-CREATE TABLE `blog_posts` (
-  `post_id` int(11) NOT NULL,
-  `category_id` int(11) DEFAULT NULL,
+CREATE TABLE `blogs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `excerpt` text DEFAULT NULL,
   `content` longtext NOT NULL,
-  `author_name` varchar(150) DEFAULT NULL,
-  `featured_image_url` varchar(255) DEFAULT NULL,
-  `is_published` tinyint(1) DEFAULT 0,
-  `published_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `image` varchar(255) DEFAULT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `credit_transactions`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `credit_transactions` (
-  `transaction_id` int(11) NOT NULL,
-  `wallet_id` int(11) NOT NULL,
-  `session_id` int(11) DEFAULT NULL,
-  `credits_used` int(11) NOT NULL,
-  `transaction_type` enum('debit','credit') NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `slug` varchar(150) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `credit_wallets`
+-- Table structure for table `faq`
 --
 
-CREATE TABLE `credit_wallets` (
-  `wallet_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `total_credits` int(11) DEFAULT 0,
-  `available_credits` int(11) DEFAULT 0,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `faq_items`
---
-
-CREATE TABLE `faq_items` (
-  `faq_id` int(11) NOT NULL,
+CREATE TABLE `faq` (
+  `id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
   `answer` text NOT NULL,
   `category` varchar(100) DEFAULT NULL,
@@ -149,100 +102,23 @@ CREATE TABLE `faq_items` (
 --
 
 CREATE TABLE `guides` (
-  `guide_id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password_hash` varchar(255) DEFAULT NULL,
-  `level` enum('Core','Senior','Master') DEFAULT 'Core',
-  `status` enum('pending','active','disabled','rejected') DEFAULT 'pending',
-  `onboarded_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_availability`
---
-
-CREATE TABLE `guide_availability` (
-  `availability_id` int(11) NOT NULL,
-  `guide_id` int(11) NOT NULL,
-  `day_of_week` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') NOT NULL,
-  `is_active` tinyint(1) DEFAULT 1,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_availability_blocks`
---
-
-CREATE TABLE `guide_availability_blocks` (
-  `block_id` int(11) NOT NULL,
-  `availability_id` int(11) NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `is_recurring` tinyint(1) DEFAULT 1,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_favorites`
---
-
-CREATE TABLE `guide_favorites` (
-  `favorite_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `guide_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_profiles`
---
-
-CREATE TABLE `guide_profiles` (
-  `guide_id` int(11) NOT NULL,
-  `display_name` varchar(150) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `years_experience` int(11) DEFAULT NULL,
-  `timezone` varchar(50) DEFAULT NULL,
-  `profile_image_url` varchar(255) DEFAULT NULL,
-  `video_intro_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_skills`
---
-
-CREATE TABLE `guide_skills` (
-  `skill_id` int(11) NOT NULL,
-  `guide_id` int(11) NOT NULL,
-  `skill_name` varchar(100) NOT NULL,
-  `proficiency_level` enum('Beginner','Intermediate','Expert','Master') DEFAULT 'Intermediate',
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `guide_topics`
---
-
-CREATE TABLE `guide_topics` (
-  `guide_topic_id` int(11) NOT NULL,
-  `guide_id` int(11) NOT NULL,
-  `topic_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `experience` int(11) DEFAULT 0,
+  `rating` decimal(2,1) DEFAULT 0.0,
+  `guide_level` enum('core','senior','master') DEFAULT 'core',
+  `price_per_min` decimal(10,2) DEFAULT 0.00,
+  `speciality_id` int(11) DEFAULT NULL,
+  `tool_id` int(11) DEFAULT NULL,
+  `skill_id` int(11) DEFAULT NULL,
+  `reading_style_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -398,19 +274,34 @@ CREATE TABLE `pages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_methods`
+-- Table structure for table `pay_per_session_plans`
 --
 
-CREATE TABLE `payment_methods` (
-  `payment_method_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `type` enum('card','paypal','bank_transfer') NOT NULL,
-  `provider` varchar(50) DEFAULT NULL,
-  `account_last4` varchar(4) DEFAULT NULL,
-  `expiration_date` date DEFAULT NULL,
-  `is_default` tinyint(1) DEFAULT 0,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE `pay_per_session_plans` (
+  `id` int(11) NOT NULL,
+  `duration_min` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pay_per_session_plans`
+--
+
+INSERT INTO `pay_per_session_plans` (`id`, `duration_min`, `price`) VALUES
+(1, 15, 50.00),
+(2, 30, 90.00),
+(3, 45, 130.00),
+(4, 60, 169.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reading_styles`
+--
+
+CREATE TABLE `reading_styles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -420,95 +311,27 @@ CREATE TABLE `payment_methods` (
 --
 
 CREATE TABLE `sessions` (
-  `session_id` int(11) NOT NULL,
-  `guide_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `session_type` enum('voice','video','chat') NOT NULL,
-  `scheduled_start` datetime NOT NULL,
-  `scheduled_end` datetime NOT NULL,
-  `actual_start` datetime DEFAULT NULL,
-  `actual_end` datetime DEFAULT NULL,
-  `duration_minutes` int(11) DEFAULT NULL,
-  `status` enum('scheduled','active','completed','canceled','no_show') DEFAULT 'scheduled',
-  `payment_status` enum('pending','paid','refunded') DEFAULT 'pending',
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `guide_id` int(11) DEFAULT NULL,
+  `session_type` enum('subscription','pay_per_session') DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `started_at` datetime DEFAULT NULL,
+  `ended_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `session_participants`
+-- Table structure for table `specialities`
 --
 
-CREATE TABLE `session_participants` (
-  `participant_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `user_type` enum('seeker','guide','admin') NOT NULL,
-  `participant_user_id` int(11) NOT NULL,
-  `joined_at` datetime DEFAULT NULL,
-  `left_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `session_reviews`
---
-
-CREATE TABLE `session_reviews` (
-  `review_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `rating` tinyint(4) NOT NULL CHECK (`rating` between 1 and 5),
-  `review_text` text DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `session_status_logs`
---
-
-CREATE TABLE `session_status_logs` (
-  `log_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `old_status` enum('scheduled','active','completed','canceled','no_show') DEFAULT NULL,
-  `new_status` enum('scheduled','active','completed','canceled','no_show') DEFAULT NULL,
-  `changed_by` enum('seeker','guide','admin','system') DEFAULT 'system',
-  `changed_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `session_summaries`
---
-
-CREATE TABLE `session_summaries` (
-  `summary_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `summary_text` longtext DEFAULT NULL,
-  `generated_by` enum('guide','ai') DEFAULT 'ai',
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subscriptions`
---
-
-CREATE TABLE `subscriptions` (
-  `subscription_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `plan_id` int(11) NOT NULL,
-  `start_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
-  `status` enum('active','paused','canceled','expired') DEFAULT 'active',
-  `next_billing_date` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+CREATE TABLE `specialities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -518,13 +341,32 @@ CREATE TABLE `subscriptions` (
 --
 
 CREATE TABLE `subscription_plans` (
-  `plan_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `monthly_cost` decimal(10,2) NOT NULL,
-  `allocated_minutes` int(11) NOT NULL,
-  `tier` enum('Discovery','Quest','Odyssey') NOT NULL,
-  `perks` text DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `duration_min` int(11) DEFAULT NULL,
+  `guide_level` enum('core','senior','master') DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subscription_plans`
+--
+
+INSERT INTO `subscription_plans` (`id`, `name`, `duration_min`, `guide_level`, `price`, `created_at`) VALUES
+(1, 'Discovery', 30, 'core', 80.00, NULL),
+(2, 'Quest', 60, 'senior', 140.00, NULL),
+(3, 'Odyssey', 90, 'master', 200.00, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tools`
+--
+
+CREATE TABLE `tools` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -544,19 +386,49 @@ CREATE TABLE `topics` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `type` enum('subscription','upgrade','session') DEFAULT NULL,
+  `status` enum('pending','success','failed') DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `name` varchar(150) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_subscriptions`
+--
+
+CREATE TABLE `user_subscriptions` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `plan_id` int(11) DEFAULT NULL,
+  `total_minutes` int(11) DEFAULT NULL,
+  `used_minutes` int(11) DEFAULT 0,
+  `remaining_minutes` int(11) DEFAULT NULL,
+  `status` enum('active','expired','cancelled') DEFAULT 'active',
+  `expires_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -569,100 +441,38 @@ ALTER TABLE `admin_master`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `billing_transactions`
+-- Indexes for table `blogs`
 --
-ALTER TABLE `billing_transactions`
-  ADD PRIMARY KEY (`billing_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `subscription_id` (`subscription_id`),
-  ADD KEY `payment_method_id` (`payment_method_id`);
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `fk_blog_category` (`category_id`),
+  ADD KEY `fk_blog_user` (`user_id`),
+  ADD KEY `idx_blog_slug` (`slug`);
 
 --
--- Indexes for table `blog_categories`
+-- Indexes for table `categories`
 --
-ALTER TABLE `blog_categories`
-  ADD PRIMARY KEY (`category_id`),
-  ADD UNIQUE KEY `name` (`name`),
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
--- Indexes for table `blog_posts`
+-- Indexes for table `faq`
 --
-ALTER TABLE `blog_posts`
-  ADD PRIMARY KEY (`post_id`),
-  ADD UNIQUE KEY `slug` (`slug`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `credit_transactions`
---
-ALTER TABLE `credit_transactions`
-  ADD PRIMARY KEY (`transaction_id`),
-  ADD KEY `wallet_id` (`wallet_id`),
-  ADD KEY `session_id` (`session_id`);
-
---
--- Indexes for table `credit_wallets`
---
-ALTER TABLE `credit_wallets`
-  ADD PRIMARY KEY (`wallet_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `faq_items`
---
-ALTER TABLE `faq_items`
-  ADD PRIMARY KEY (`faq_id`);
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `guides`
 --
 ALTER TABLE `guides`
-  ADD PRIMARY KEY (`guide_id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `guide_availability`
---
-ALTER TABLE `guide_availability`
-  ADD PRIMARY KEY (`availability_id`),
-  ADD KEY `guide_id` (`guide_id`);
-
---
--- Indexes for table `guide_availability_blocks`
---
-ALTER TABLE `guide_availability_blocks`
-  ADD PRIMARY KEY (`block_id`),
-  ADD KEY `availability_id` (`availability_id`);
-
---
--- Indexes for table `guide_favorites`
---
-ALTER TABLE `guide_favorites`
-  ADD PRIMARY KEY (`favorite_id`),
-  ADD UNIQUE KEY `user_guide_unique` (`user_id`,`guide_id`),
-  ADD KEY `guide_id` (`guide_id`);
-
---
--- Indexes for table `guide_profiles`
---
-ALTER TABLE `guide_profiles`
-  ADD PRIMARY KEY (`guide_id`);
-
---
--- Indexes for table `guide_skills`
---
-ALTER TABLE `guide_skills`
-  ADD PRIMARY KEY (`skill_id`),
-  ADD KEY `guide_id` (`guide_id`);
-
---
--- Indexes for table `guide_topics`
---
-ALTER TABLE `guide_topics`
-  ADD PRIMARY KEY (`guide_topic_id`),
-  ADD KEY `guide_id` (`guide_id`),
-  ADD KEY `topic_id` (`topic_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `speciality_id` (`speciality_id`),
+  ADD KEY `tool_id` (`tool_id`),
+  ADD KEY `skill_id` (`skill_id`),
+  ADD KEY `reading_style_id` (`reading_style_id`);
 
 --
 -- Indexes for table `horoscope_daily`
@@ -692,63 +502,42 @@ ALTER TABLE `pages`
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
--- Indexes for table `payment_methods`
+-- Indexes for table `pay_per_session_plans`
 --
-ALTER TABLE `payment_methods`
-  ADD PRIMARY KEY (`payment_method_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `pay_per_session_plans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reading_styles`
+--
+ALTER TABLE `reading_styles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`session_id`),
-  ADD KEY `guide_id` (`guide_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `session_participants`
---
-ALTER TABLE `session_participants`
-  ADD PRIMARY KEY (`participant_id`),
-  ADD KEY `session_id` (`session_id`),
-  ADD KEY `participant_user_id` (`participant_user_id`);
-
---
--- Indexes for table `session_reviews`
---
-ALTER TABLE `session_reviews`
-  ADD PRIMARY KEY (`review_id`),
-  ADD KEY `session_id` (`session_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `session_status_logs`
---
-ALTER TABLE `session_status_logs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `session_id` (`session_id`);
-
---
--- Indexes for table `session_summaries`
---
-ALTER TABLE `session_summaries`
-  ADD PRIMARY KEY (`summary_id`),
-  ADD KEY `session_id` (`session_id`);
-
---
--- Indexes for table `subscriptions`
---
-ALTER TABLE `subscriptions`
-  ADD PRIMARY KEY (`subscription_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `plan_id` (`plan_id`);
+  ADD KEY `guide_id` (`guide_id`);
+
+--
+-- Indexes for table `specialities`
+--
+ALTER TABLE `specialities`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subscription_plans`
 --
 ALTER TABLE `subscription_plans`
-  ADD PRIMARY KEY (`plan_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tools`
+--
+ALTER TABLE `tools`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `topics`
@@ -759,11 +548,25 @@ ALTER TABLE `topics`
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_subscriptions`
+--
+ALTER TABLE `user_subscriptions`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `plan_id` (`plan_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -776,76 +579,28 @@ ALTER TABLE `admin_master`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `billing_transactions`
+-- AUTO_INCREMENT for table `blogs`
 --
-ALTER TABLE `billing_transactions`
-  MODIFY `billing_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `blogs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `blog_categories`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `blog_categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `blog_posts`
+-- AUTO_INCREMENT for table `faq`
 --
-ALTER TABLE `blog_posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `credit_transactions`
---
-ALTER TABLE `credit_transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `credit_wallets`
---
-ALTER TABLE `credit_wallets`
-  MODIFY `wallet_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `faq_items`
---
-ALTER TABLE `faq_items`
-  MODIFY `faq_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `guides`
 --
 ALTER TABLE `guides`
-  MODIFY `guide_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `guide_availability`
---
-ALTER TABLE `guide_availability`
-  MODIFY `availability_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `guide_availability_blocks`
---
-ALTER TABLE `guide_availability_blocks`
-  MODIFY `block_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `guide_favorites`
---
-ALTER TABLE `guide_favorites`
-  MODIFY `favorite_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `guide_skills`
---
-ALTER TABLE `guide_skills`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `guide_topics`
---
-ALTER TABLE `guide_topics`
-  MODIFY `guide_topic_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `horoscope_daily`
@@ -872,52 +627,40 @@ ALTER TABLE `pages`
   MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment_methods`
+-- AUTO_INCREMENT for table `pay_per_session_plans`
 --
-ALTER TABLE `payment_methods`
-  MODIFY `payment_method_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pay_per_session_plans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `reading_styles`
+--
+ALTER TABLE `reading_styles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `session_participants`
+-- AUTO_INCREMENT for table `specialities`
 --
-ALTER TABLE `session_participants`
-  MODIFY `participant_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `session_reviews`
---
-ALTER TABLE `session_reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `session_status_logs`
---
-ALTER TABLE `session_status_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `session_summaries`
---
-ALTER TABLE `session_summaries`
-  MODIFY `summary_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subscriptions`
---
-ALTER TABLE `subscriptions`
-  MODIFY `subscription_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `specialities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subscription_plans`
 --
 ALTER TABLE `subscription_plans`
-  MODIFY `plan_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tools`
+--
+ALTER TABLE `tools`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `topics`
@@ -926,9 +669,21 @@ ALTER TABLE `topics`
   MODIFY `topic_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_subscriptions`
+--
+ALTER TABLE `user_subscriptions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -936,85 +691,39 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `billing_transactions`
+-- Constraints for table `blogs`
 --
-ALTER TABLE `billing_transactions`
-  ADD CONSTRAINT `billing_transactions_ibfk_2` FOREIGN KEY (`subscription_id`) REFERENCES `subscriptions` (`subscription_id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `billing_transactions_ibfk_3` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`payment_method_id`) ON DELETE SET NULL;
+ALTER TABLE `blogs`
+  ADD CONSTRAINT `fk_blog_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `blog_posts`
+-- Constraints for table `guides`
 --
-ALTER TABLE `blog_posts`
-  ADD CONSTRAINT `blog_posts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `blog_categories` (`category_id`) ON DELETE SET NULL;
+ALTER TABLE `guides`
+  ADD CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`speciality_id`) REFERENCES `specialities` (`id`),
+  ADD CONSTRAINT `guides_ibfk_2` FOREIGN KEY (`tool_id`) REFERENCES `tools` (`id`),
+  ADD CONSTRAINT `guides_ibfk_3` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`),
+  ADD CONSTRAINT `guides_ibfk_4` FOREIGN KEY (`reading_style_id`) REFERENCES `reading_styles` (`id`);
 
 --
--- Constraints for table `credit_transactions`
+-- Constraints for table `sessions`
 --
-ALTER TABLE `credit_transactions`
-  ADD CONSTRAINT `credit_transactions_ibfk_1` FOREIGN KEY (`wallet_id`) REFERENCES `credit_wallets` (`wallet_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `credit_transactions_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`session_id`) ON DELETE SET NULL;
+ALTER TABLE `sessions`
+  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `sessions_ibfk_2` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`id`);
 
 --
--- Constraints for table `guide_availability`
+-- Constraints for table `transactions`
 --
-ALTER TABLE `guide_availability`
-  ADD CONSTRAINT `guide_availability_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`guide_id`) ON DELETE CASCADE;
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `guide_availability_blocks`
+-- Constraints for table `user_subscriptions`
 --
-ALTER TABLE `guide_availability_blocks`
-  ADD CONSTRAINT `guide_availability_blocks_ibfk_1` FOREIGN KEY (`availability_id`) REFERENCES `guide_availability` (`availability_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `guide_favorites`
---
-ALTER TABLE `guide_favorites`
-  ADD CONSTRAINT `guide_favorites_ibfk_2` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`guide_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `guide_profiles`
---
-ALTER TABLE `guide_profiles`
-  ADD CONSTRAINT `guide_profiles_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`guide_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `guide_skills`
---
-ALTER TABLE `guide_skills`
-  ADD CONSTRAINT `guide_skills_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`guide_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `guide_topics`
---
-ALTER TABLE `guide_topics`
-  ADD CONSTRAINT `guide_topics_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`guide_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `guide_topics_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`topic_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `session_participants`
---
-ALTER TABLE `session_participants`
-  ADD CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`session_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `session_status_logs`
---
-ALTER TABLE `session_status_logs`
-  ADD CONSTRAINT `session_status_logs_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`session_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `session_summaries`
---
-ALTER TABLE `session_summaries`
-  ADD CONSTRAINT `session_summaries_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`session_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subscriptions`
---
-ALTER TABLE `subscriptions`
-  ADD CONSTRAINT `subscriptions_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `subscription_plans` (`plan_id`) ON DELETE CASCADE;
+ALTER TABLE `user_subscriptions`
+  ADD CONSTRAINT `user_subscriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_subscriptions_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `subscription_plans` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
