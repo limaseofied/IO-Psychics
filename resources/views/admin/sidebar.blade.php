@@ -22,7 +22,7 @@
             </a>
         </li>
 
-    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guide*') || Request::is('admin/paypersession*')  ? 'open active' : '' }}">
+    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guide*') || Request::is('admin/pay-per-session*')  ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
@@ -68,8 +68,8 @@
         </li>
 
 
-        <li class="{{ Request::is('admin/paypersession*') ? 'active' : '' }}">
-            <a href="{{ url('admin/paypersession') }}">
+        <li class="{{ Request::is('admin/pay-per-session*') ? 'active' : '' }}">
+            <a href="{{ url('admin/pay-per-session') }}">
                 <span class="menu-text">Pay Per Session</span>
             </a>
         </li>

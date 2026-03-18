@@ -133,12 +133,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('subscription/update/{id}', [SubscriptionPlanController::class, 'update'])->name('subscription.update');
             Route::delete('subscription/{id}', [SubscriptionPlanController::class, 'destroy'])->name('subscription.delete');
 
-            Route::get('paypersession', [PayPerSessionPlanController::class, 'index'])->name('paypersession.index');
-            Route::get('paypersession/create', [PayPerSessionPlanController::class, 'create'])->name('paypersession.create');
-            Route::post('paypersession/store', [PayPerSessionPlanController::class, 'store'])->name('paypersession.store');
-            Route::get('paypersession/edit/{id}', [PayPerSessionPlanController::class, 'edit'])->name('paypersession.edit');
-            Route::post('paypersession/update/{id}', [PayPerSessionPlanController::class, 'update'])->name('paypersession.update');
-            Route::delete('paypersession/{id}', [PayPerSessionPlanController::class, 'destroy'])->name('paypersession.delete');
+            Route::get('pay-per-session', [PayPerSessionPlanController::class, 'index'])->name('pay-per-session.index');
+            Route::get('pay-per-session/create', [PayPerSessionPlanController::class, 'create'])->name('pay-per-session.create');
+            Route::post('pay-per-session/store', [PayPerSessionPlanController::class, 'store'])->name('pay-per-session.store');
+            Route::get('pay-per-session/edit/{id}', [PayPerSessionPlanController::class, 'edit'])->name('pay-per-session.edit');
+            Route::post('pay-per-session/update/{id}', [PayPerSessionPlanController::class, 'update'])->name('pay-per-session.update');
+            Route::delete('pay-per-session/{id}', [PayPerSessionPlanController::class, 'destroy'])->name('pay-per-session.delete');
 
 
             Route::get('guide', [GuideController::class, 'index'])->name('guide.index');
