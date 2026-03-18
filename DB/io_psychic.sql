@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2026 at 04:59 PM
+-- Generation Time: Mar 18, 2026 at 04:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin_master` (
 --
 
 INSERT INTO `admin_master` (`id`, `name`, `phone`, `email`, `password`, `last_login`, `created_on`, `updated_on`, `status`) VALUES
-(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-17 13:55:15', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
+(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-18 14:49:28', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
 
 -- --------------------------------------------------------
 
@@ -102,13 +102,6 @@ CREATE TABLE `faqs` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `faqs`
---
-
-INSERT INTO `faqs` (`id`, `question`, `answer`, `category`, `created_at`, `updated_at`) VALUES
-(1, 'How does it work?', '<p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Seeking answers? Craving guidance but feeling uncertain? You\'re not alone. We\'ve been there and we understand that new experiences can be stressful. Whether you\'re seeking guidance on love, career, or spiritual growth, you\'re here for a reason — discover why in just 3 easy steps.</p><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Here\'s how you can start experiencing the transformative power of an online psychic reading:</p><ol style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\"><li><span style=\"font-weight: 700;\">Select a Guide:</span>&nbsp;Explore our list of gifted Guides and find the one that resonates with your intentions for the most accurate reading tailored just for you.</li><li><span style=\"font-weight: 700;\">Create your account:</span>&nbsp;Register for an account with IO Psychics. Don\'t worry — it\'s quick and easy.</li><li><span style=\"font-weight: 700;\">Connect with a Guide:</span>&nbsp;Connect via phone, chat, or video and find clarity, peace, and purpose without judgment.</li></ol><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Get ready to embark on a journey of self-discovery, empowerment, and spiritual enlightenment. Connect with one of our trusted Guides today and unlock the secrets of your future!</p><p style=\"color: rgb(51, 34, 125); font-family: Poppins, sans-serif; font-size: 18px; background-color: rgba(235, 233, 242, 0.8);\">Want to give it a try? Get 5 minutes\' worth of free online psychic readings today! *</p>', 'How it Works', '2026-03-17 15:42:57', '2026-03-17 10:12:57');
-
 -- --------------------------------------------------------
 
 --
@@ -126,14 +119,21 @@ CREATE TABLE `guides` (
   `rating` decimal(2,1) DEFAULT 0.0,
   `guide_level` enum('core','senior','master') DEFAULT 'core',
   `price_per_min` decimal(10,2) DEFAULT 0.00,
-  `speciality_id` int(11) DEFAULT NULL,
-  `tool_id` int(11) DEFAULT NULL,
-  `skill_id` int(11) DEFAULT NULL,
-  `reading_style_id` int(11) DEFAULT NULL,
+  `speciality_id` varchar(150) DEFAULT NULL,
+  `tool_id` varchar(150) DEFAULT NULL,
+  `skill_id` varchar(150) DEFAULT NULL,
+  `reading_style_id` varchar(150) DEFAULT NULL,
   `status` tinyint(4) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guides`
+--
+
+INSERT INTO `guides` (`id`, `name`, `email`, `phone`, `password`, `address`, `experience`, `rating`, `guide_level`, `price_per_min`, `speciality_id`, `tool_id`, `skill_id`, `reading_style_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Lima Mohanty', 'mohantylima71@gmail.com', '8763447921', '$2y$10$k4QkneF7hXQj5B8U7gZzPOLZrkDNKHSg2Lo7LYXDe06GGgd.uuTHO', 'India', 10, 5.0, 'senior', 2.00, '3,4,5,6,7,8,9,10,11,12,13,14,15', '1,2,3,4,5,6,7', '1,2,3,4,5,6', '1,2,3', 1, '2026-03-18 09:51:30', '2026-03-18 10:01:11');
 
 -- --------------------------------------------------------
 
@@ -294,18 +294,20 @@ CREATE TABLE `pages` (
 CREATE TABLE `pay_per_session_plans` (
   `id` int(11) NOT NULL,
   `duration_min` int(11) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL
+  `price` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pay_per_session_plans`
 --
 
-INSERT INTO `pay_per_session_plans` (`id`, `duration_min`, `price`) VALUES
-(1, 15, 50.00),
-(2, 30, 90.00),
-(3, 45, 130.00),
-(4, 60, 169.00);
+INSERT INTO `pay_per_session_plans` (`id`, `duration_min`, `price`, `created_at`, `updated_at`) VALUES
+(1, 15, 50.00, '2026-03-18 13:54:40', '2026-03-18 13:54:40'),
+(2, 30, 90.00, '2026-03-18 13:54:40', '2026-03-18 13:54:40'),
+(3, 45, 130.00, '2026-03-18 13:54:40', '2026-03-18 13:54:40'),
+(4, 60, 169.00, '2026-03-18 13:54:40', '2026-03-18 13:54:40');
 
 -- --------------------------------------------------------
 
@@ -670,7 +672,7 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `guides`
 --
 ALTER TABLE `guides`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `horoscope_daily`
@@ -700,7 +702,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `pay_per_session_plans`
 --
 ALTER TABLE `pay_per_session_plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reading_styles`
