@@ -22,15 +22,16 @@
             </a>
         </li>
 
-         <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*')  ? 'open active' : '' }}">
+    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guide*') || Request::is('admin/paypersession*')  ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
-        <span class="menu-text"> Master Data</span>
+        <span class="menu-text">Console Management</span>
         <i class="menu-expand"></i>
     </a>
 
-    <ul class="submenu">      
+    <ul class="submenu">   
+        
 
         <li class="{{ Request::is('admin/specialities*') ? 'active' : '' }}">
             <a href="{{ url('admin/specialities') }}">
@@ -56,6 +57,27 @@
          <li class="{{ Request::is('admin/faq*') ? 'active' : '' }}">
             <a href="{{ url('admin/faq') }}">
                 <span class="menu-text"> FAQ </span>
+            </a>
+        </li>
+
+        
+        <li class="{{ Request::is('admin/subscription*') ? 'active' : '' }}">
+            <a href="{{ url('admin/subscription') }}">
+                <span class="menu-text">Subscription Plan</span>
+            </a>
+        </li>
+
+
+        <li class="{{ Request::is('admin/paypersession*') ? 'active' : '' }}">
+            <a href="{{ url('admin/paypersession') }}">
+                <span class="menu-text">Pay Per Session</span>
+            </a>
+        </li>
+
+
+        <li class="{{ Request::is('admin/guide*') ? 'active' : '' }}">
+            <a href="{{ url('admin/guide') }}">
+                <span class="menu-text">Guide</span>
             </a>
         </li>
 
