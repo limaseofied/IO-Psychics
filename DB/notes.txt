@@ -60,7 +60,39 @@ if user subscribed a plan and midway he can upgrade to higher plan
 ALTER TABLE `reading_styles` ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `name`, ADD `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
 
 ------------ To do ---------------
-Sign up 
 subscription plan master 
 pay per session master
 Guide master
+
+
+--------------------------------
+
+
+SHOW CREATE TABLE guides;
+
+-------------------------------------
+CREATE TABLE `guides` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `experience` int(11) DEFAULT 0,
+  `rating` decimal(2,1) DEFAULT 0.0,
+  `guide_level` enum('core','senior','master') DEFAULT 'core',
+  `price_per_min` decimal(10,2) DEFAULT 0.00,
+  `speciality_id` int(11) DEFAULT NULL,
+  `tool_id` int(11) DEFAULT NULL,
+  `skill_id` int(11) DEFAULT NULL,
+  `reading_style_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `speciality_id` (`speciality_id`),
+  KEY `tool_id` (`tool_id`),
+  KEY `skill_id` (`skill_id`),
+  KEY `reading_style_id` (`reading_style_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

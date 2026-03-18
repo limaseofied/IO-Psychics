@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\ToolController;
 use App\Http\Controllers\Admin\ReadingStyleController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\SubscriptionPlanController;
+use App\Http\Controllers\Admin\PayPerSessionPlanController;
+use App\Http\Controllers\Admin\GuideController;
 
 
 // -------------------
@@ -121,6 +124,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('faq/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
             Route::post('faq/update/{id}', [FaqController::class, 'update'])->name('faq.update');
             Route::delete('faq/{id}', [FaqController::class, 'destroy'])->name('faq.delete');
+
+
+            Route::get('subscription', [SubscriptionPlanController::class, 'index'])->name('subscription.index');
+            Route::get('subscription/create', [SubscriptionPlanController::class, 'create'])->name('subscription.create');
+            Route::post('subscription/store', [SubscriptionPlanController::class, 'store'])->name('subscription.store');
+            Route::get('subscription/edit/{id}', [SubscriptionPlanController::class, 'edit'])->name('subscription.edit');
+            Route::post('subscription/update/{id}', [SubscriptionPlanController::class, 'update'])->name('subscription.update');
+            Route::delete('subscription/{id}', [SubscriptionPlanController::class, 'destroy'])->name('subscription.delete');
+
+            Route::get('paypersession', [PayPerSessionPlanController::class, 'index'])->name('paypersession.index');
+            Route::get('paypersession/create', [PayPerSessionPlanController::class, 'create'])->name('paypersession.create');
+            Route::post('paypersession/store', [PayPerSessionPlanController::class, 'store'])->name('paypersession.store');
+            Route::get('paypersession/edit/{id}', [PayPerSessionPlanController::class, 'edit'])->name('paypersession.edit');
+            Route::post('paypersession/update/{id}', [PayPerSessionPlanController::class, 'update'])->name('paypersession.update');
+            Route::delete('paypersession/{id}', [PayPerSessionPlanController::class, 'destroy'])->name('paypersession.delete');
+
+
+            Route::get('guide', [GuideController::class, 'index'])->name('guide.index');
+            Route::get('guide/create', [GuideController::class, 'create'])->name('guide.create');
+            Route::post('guide/store', [GuideController::class, 'store'])->name('guide.store');
+            Route::get('guide/edit/{id}', [GuideController::class, 'edit'])->name('guide.edit');
+            Route::post('guide/update/{id}', [GuideController::class, 'update'])->name('guide.update');
+            Route::delete('guide/{id}', [GuideController::class, 'destroy'])->name('guide.delete');
+
 
     
     });
