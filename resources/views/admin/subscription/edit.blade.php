@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Edit Tool')
+@section('title', 'Edit Subscription Plan')
 
 @section('content')
 <div class="page-content">
@@ -11,9 +11,9 @@
                 <a href="{{ url('admin/dashboard') }}">Home</a>
             </li>
             <li>
-                <a href="{{ url('admin/tools') }}">Tools</a>
+                <a href="{{ url('admin/subscription') }}">Subscription Plans</a>
             </li>
-            <li class="active">Edit Tool</li>
+            <li class="active">Edit Plan</li>
         </ul>
     </div>
 
@@ -21,17 +21,12 @@
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-               Tools
+                Subscription Plans
                 <small>
                     <i class="fa fa-angle-right"></i>
-                    Edit Tool
+                    Edit Plan
                 </small>
             </h1>
-        </div>
-        <div class="header-buttons">
-            <a class="sidebar-toggler" href="#"><i class="fa fa-arrows-h"></i></a>
-            <a class="refresh" id="refresh-toggler" href=""><i class="glyphicon glyphicon-refresh"></i></a>
-            <a class="fullscreen" id="fullscreen-toggler" href="#"><i class="glyphicon glyphicon-fullscreen"></i></a>
         </div>
     </div>
 
@@ -40,8 +35,10 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="widget radius-bordered">
-                    <div class="widget-header">
-                        <span class="widget-caption">Edit Tool</span>
+                    <div class="widget-header bg-primary">
+                        <span class="widget-caption text-white">
+                            Edit Subscription Plan
+                        </span>
                     </div>
 
                     <div class="widget-body">
@@ -64,33 +61,84 @@
                         @endif
 
                         <form method="POST"
-                              action="{{ route('admin.tools.update', $tools->id) }}"
+                              action="{{ route('admin.subscription.update', $plan->id) }}"
                               class="form-horizontal">
 
                             @csrf
+
+                            {{-- Name --}}
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">
-                                     Name <span class="text-danger">*</span>
+                                    Name <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-8">
                                     <input type="text"
                                            name="name"
                                            class="form-control"
-                                           placeholder="Enter Name"
-                                           value="{{ old('name', $tools->name) }}"
+                                           placeholder="Enter Plan Name"
+                                           value="{{ old('name', $plan->name) }}"
                                            required>
                                 </div>
                             </div>
 
+                            {{-- Duration --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Duration (Minutes) <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    <input type="number"
+                                           name="duration_min"
+                                           class="form-control"
+                                           placeholder="Enter Duration in Minutes"
+                                           value="{{ old('duration_min', $plan->duration_min) }}"
+                                           required>
+                                </div>
+                            </div>
+
+                            {{-- Guide Level --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Guide Level <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    <select name="guide_level" class="form-control" required>
+                                        <option value="">Select Level</option>
+                                        <option value="core" {{ old('guide_level', $plan->guide_level) == 'core' ? 'selected' : '' }}>Core</option>
+                                        <option value="senior" {{ old('guide_level', $plan->guide_level) == 'senior' ? 'selected' : '' }}>Senior</option>
+                                        <option value="master" {{ old('guide_level', $plan->guide_level) == 'master' ? 'selected' : '' }}>Master</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- Price --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Price <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    <input type="number"
+                                           name="price"
+                                           class="form-control"
+                                           placeholder="Enter Price"
+                                           value="{{ old('price', $plan->price) }}"
+                                           step="0.01"
+                                           required>
+                                </div>
+                            </div>
+
+                            {{-- Buttons --}}
                             <div class="form-group text-center mt-4">
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-check"></i> Update                                 </button>
-                                <a href="{{ url('admin/tools') }}" class="btn btn-default">
+                                    <i class="fa fa-check"></i> Update
+                                </button>
+                                <a href="{{ url('admin/subscription') }}" class="btn btn-secondary">
                                     <i class="fa fa-arrow-left"></i> Back
                                 </a>
                             </div>
 
                         </form>
+
                     </div>
                 </div>
             </div>

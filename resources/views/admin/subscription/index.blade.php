@@ -1,14 +1,14 @@
 @extends('admin.layout')
-@section('title', 'Tools')
+@section('title', 'Subscription Plans')
 
 @section('content')
 <div class="page-content">
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-                Tools
-                <a href="{{ route('admin.tools.create') }}" class="btn btn-primary">
-                    <i class="fa fa-plus"></i> Add Tools
+                Subscription Plans
+                <a href="{{ route('admin.subscription.create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Add Plan
                 </a>
             </h1>
         </div>
@@ -38,47 +38,76 @@
     @endif
 
     <div class="page-body">
-                <div class="widget-body">
+        <div class="widget-body">
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped" id="DataTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Created On</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($tools as $index => $s)
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="DataTable">
+                    <thead>
                         <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $s->name }}</td>
-                            <td>{{ \Carbon\Carbon::parse($s->created_at)->format('d-m-Y') }}</td>
-                            <td>
-                                <a href="{{ route('admin.tools.edit', $s->id) }}" class="btn btn-xs btn-warning">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a>
-
-                                <a href="{{ route('admin.tools.delete', $s->id) }}"
-                                   class="btn btn-xs btn-danger"
-                                   onclick="event.preventDefault(); 
-                                            if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $s->id }}').submit(); }">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
-
-                                <form id="delete-form-{{ $s->id }}" action="{{ route('admin.tools.delete', $s->id) }}" method="POST" style="display:none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </td>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Duration (Min)</th>
+                            <th>Guide Level</th>
+                            <th>Price</th>
+                            <th>Created On</th>
+                            <th>Action</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($subscription as $index => $p)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $p->name }}</td>
+                                <td>{{ $p->duration_min }}</td>
+                                <td>
+    @php
+        switch($p->guide_level) {
+            case 'core':
+                $badgeClass = 'badge-success';
+                break;
+            case 'senior':
+                $badgeClass = 'badge-warning';
+                break;
+            case 'master':
+                $badgeClass = 'badge-danger';
+                break;
+            default:
+                $badgeClass = 'badge-info';
+        }
+    @endphp
+    <span class="badge {{ $badgeClass }}">
+        {{ ucfirst($p->guide_level) }}
+    </span>
+</td>
+                                <td>₹{{ number_format($p->price, 2) }}</td>
+                                <td>{{ \Carbon\Carbon::parse($p->created_at)->format('d-m-Y') }}</td>
+                                <td>
+                                    <a href="{{ route('admin.subscription.edit', $p->id) }}" class="btn btn-xs btn-warning">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+
+                                    <a href="{{ route('admin.subscription.delete', $p->id) }}"
+                                       class="btn btn-xs btn-danger"
+                                       onclick="event.preventDefault(); 
+                                                if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $p->id }}').submit(); }">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+
+                                    <form id="delete-form-{{ $p->id }}" 
+                                          action="{{ route('admin.subscription.delete', $p->id) }}" 
+                                          method="POST" 
+                                          style="display:none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-    </div>
     </div>
 </div>
 
