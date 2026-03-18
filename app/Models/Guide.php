@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 
 class Guide extends Model
@@ -27,4 +27,11 @@ class Guide extends Model
     protected $hidden = [
         'password'
     ];
+
+     public function setPasswordAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['password'] = Hash::make($value);
+        }
+    }
 }

@@ -141,12 +141,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('pay-per-session/{id}', [PayPerSessionPlanController::class, 'destroy'])->name('pay-per-session.delete');
 
 
-            Route::get('guide', [GuideController::class, 'index'])->name('guide.index');
-            Route::get('guide/create', [GuideController::class, 'create'])->name('guide.create');
-            Route::post('guide/store', [GuideController::class, 'store'])->name('guide.store');
-            Route::get('guide/edit/{id}', [GuideController::class, 'edit'])->name('guide.edit');
-            Route::post('guide/update/{id}', [GuideController::class, 'update'])->name('guide.update');
-            Route::delete('guide/{id}', [GuideController::class, 'destroy'])->name('guide.delete');
+            Route::get('guides', [GuideController::class, 'index'])->name('guides.index');
+            Route::get('guides/create', [GuideController::class, 'create'])->name('guides.create');
+            Route::post('guides/store', [GuideController::class, 'store'])->name('guides.store');
+            Route::get('guides/edit/{id}', [GuideController::class, 'edit'])->name('guides.edit');
+            Route::post('guides/update/{id}', [GuideController::class, 'update'])->name('guides.update');
+            Route::delete('guides/{id}', [GuideController::class, 'destroy'])->name('guides.delete');
 
 
     
