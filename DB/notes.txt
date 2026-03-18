@@ -96,3 +96,10 @@ CREATE TABLE `guides` (
   KEY `skill_id` (`skill_id`),
   KEY `reading_style_id` (`reading_style_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+------ to do admin panel ------
+
+Horoscope daily list
+Horoscope Monthly List
+Sign up page in frontend
+Subscription plan choose by user 
