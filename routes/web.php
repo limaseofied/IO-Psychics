@@ -160,7 +160,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
+Route::get('/plans-pricing', [HomeController::class, 'plans'])->name('plans');
+Route::get('/guides', [HomeController::class, 'guides'])->name('guides'); //connect-tarot-guides redirects to guide list pages with filter raeading style tarot selected
+Route::get('/horoscopes', [HomeController::class, 'horoscopes'])->name('horoscopes');
+Route::get('/tarot', [HomeController::class, 'tarot'])->name('tarot');
+Route::get('/topics', [HomeController::class, 'topics'])->name('topics');
+Route::get('/how-it-works', [HomeController::class, 'howItWorks'])->name('how.it.works');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+// Free Trial
+Route::get('/free-trial', [HomeController::class, 'freeTrial'])->name('free.trial');
+// Auth Pages
+Route::get('/signup', [HomeController::class, 'signup'])->name('signup');
+Route::get('/login', [HomeController::class, 'login'])->name('login');
 
 //////// CRON JOB FOR HOROSCOPE API
 
