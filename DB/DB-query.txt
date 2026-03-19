@@ -43,3 +43,7 @@ CREATE TABLE `service_steps` (
 
 ALTER TABLE `guides` CHANGE `price_per_min` `price_per_session` DECIMAL(10,2) NULL DEFAULT '0.00';
 
+ALTER TABLE `guides` ADD `profile_image` VARCHAR(255) NULL DEFAULT NULL AFTER `phone`;
+
+ALTER TABLE `guides` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `updated_at`;
+

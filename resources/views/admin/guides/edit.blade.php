@@ -59,9 +59,9 @@
                             $selectedReading = $guide->reading_style_id ? explode(',', $guide->reading_style_id) : [];
                         @endphp
 
-                        <form method="POST"
+                        <form method="POST" autocomplete="off"
                               action="{{ route('admin.guides.update', $guide->id) }}"
-                              class="form-horizontal">
+                              class="form-horizontal"  enctype="multipart/form-data">
                             @csrf
                          
                             {{-- Name --}}
@@ -82,6 +82,17 @@
                                 </div>
                             </div>
 
+                            
+                            {{-- Password --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Password</label>
+                                <div class="col-lg-8">
+                                    <input type="password" name="password" autocomplete="off" class="form-control"
+                                           placeholder="Leave blank to keep old password">
+                                </div>
+                            </div>
+
+
                             {{-- Phone --}}
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Phone *</label>
@@ -91,12 +102,21 @@
                                 </div>
                             </div>
 
-                            {{-- Password --}}
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label">Password</label>
+                             <div class="form-group">
+                                <label class="col-lg-4 control-label">Image</label>
+
                                 <div class="col-lg-8">
-                                    <input type="password" name="password" class="form-control"
-                                           placeholder="Leave blank to keep old password">
+
+                                    @if($guide->profile_image)
+                                        <div style="margin-bottom:10px;">
+                                            <img src="{{ asset('public/storage/uploads/guide_profile/'.$guide->profile_image) }}"
+                                                 width="50">
+                                        </div>
+                                    @endif
+
+                                    <input type="file"
+                                           name="profile_image"
+                                           class="form-control">
                                 </div>
                             </div>
 

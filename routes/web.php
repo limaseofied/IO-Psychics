@@ -127,6 +127,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('faq/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
             Route::post('faq/update/{id}', [FaqController::class, 'update'])->name('faq.update');
             Route::delete('faq/{id}', [FaqController::class, 'destroy'])->name('faq.delete');
+            Route::post('faq/toggle-display', [FaqController::class, 'toggleDisplay'])->name('faq.toggleDisplay');
 
 
             Route::get('subscription', [SubscriptionPlanController::class, 'index'])->name('subscription.index');
@@ -150,7 +151,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('guides/edit/{id}', [GuideController::class, 'edit'])->name('guides.edit');
             Route::post('guides/update/{id}', [GuideController::class, 'update'])->name('guides.update');
             Route::delete('guides/{id}', [GuideController::class, 'destroy'])->name('guides.delete');
-
+            Route::post('guides/toggle-display', [GuideController::class, 'toggleDisplay'])->name('guides.toggleDisplay');
            
             Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
             Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');

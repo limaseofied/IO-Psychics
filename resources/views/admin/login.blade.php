@@ -24,23 +24,7 @@
 <body>
                     
     <div class="login-container animated fadeInDown login-page admin-login-container">
-
-         @if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
-
-                     @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                                @foreach($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
-                        </div>
-                    @endif
+        
         <div class="loginbox admin-login-box">
             <div class="admin-login-box-content">
                 <div class="login-website-logo">
@@ -59,6 +43,23 @@
                 <div class="or">OR</div>
             </div>
             <form method="POST" action="{{ route('admin.login.submit') }}"> 
+
+                 @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+                     @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <div>{{ $error }}</div>
+                                @endforeach
+                        </div>
+                    @endif
              @csrf
             <div class="loginbox-textbox">
                 <input type="email" name="email" required class="form-control" placeholder="Email" />

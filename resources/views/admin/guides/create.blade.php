@@ -88,6 +88,15 @@
                                 </div>
                             </div>
 
+                            
+                            {{-- Password --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Password *</label>
+                                <div class="col-lg-8">
+                                    <input type="password" name="password" class="form-control" required>
+                                </div>
+                            </div>
+
                             {{-- Phone --}}
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Phone *</label>
@@ -97,13 +106,19 @@
                                 </div>
                             </div>
 
-                            {{-- Password --}}
+                             {{-- Image Upload --}}
                             <div class="form-group">
-                                <label class="col-lg-4 control-label">Password *</label>
+                                <label class="col-lg-4 control-label">
+                                  Profile  Image
+                                </label>
+
                                 <div class="col-lg-8">
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="file"
+                                           name="profile_image"
+                                           class="form-control">
                                 </div>
                             </div>
+
 
                             {{-- Guide Level --}}
                             <div class="form-group">

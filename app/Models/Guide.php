@@ -11,6 +11,7 @@ class Guide extends Model
         'name',
         'email',
         'phone',
+        'profile_image',
         'password',
         'address',
         'experience',
@@ -21,14 +22,15 @@ class Guide extends Model
         'tool_id',
         'skill_id',
         'reading_style_id',
-        'status'
+        'status',
+        'display_in_home'
     ];
 
     protected $hidden = [
         'password'
     ];
 
-     public function setPasswordAttribute($value)
+    public function setPasswordAttribute($value)
     {
         if ($value) {
             $this->attributes['password'] = Hash::make($value);

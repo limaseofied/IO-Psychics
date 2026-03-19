@@ -8,6 +8,7 @@ class Faq extends Model
     protected $fillable = [
         'question',
         'answer',
-        'category'
+        'category',
+        'display_in_home'
     ];
 }

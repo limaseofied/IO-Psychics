@@ -125,7 +125,7 @@
                                         
                                         <option value="Horoscope" {{ old('category') == 'Horoscope' ? 'selected' : '' }}>Horoscope</option>
                                         
-                                        <option value="Tarrot" {{ old('category') == 'Tarrot' ? 'selected' : '' }}>Tarrot</option>
+                                        <option value="Tarot" {{ old('category') == 'Tarot' ? 'selected' : '' }}>Tarot</option>
                                         
                                         <option value="Guide" {{ old('category') == 'Guide' ? 'selected' : '' }}>Guide</option>
                                     </select>

@@ -17,48 +17,48 @@ class HomeController extends Controller
     }
 
     public function plans() {
-        return view('plans');
+        return view('frontend.plans');
     }
 
     public function guides() {
-        return view('guides');
+        return view('frontend.guides');
     }
 
     public function horoscopes() {
-        return view('horoscopes');
+        return view('frontend.horoscopes');
     }
 
     public function tarot() {
-        return view('tarot');
+        return view('frontend.tarot');
     }
 
 
     public function topics() {
-        return view('topics');
+        return view('frontend.topics');
     }
 
     public function howItWorks() {
-        return view('how-it-works');
+        return view('frontend.how-it-works');
     }
 
     public function about() {
-        return view('about');
+        return view('frontend.about');
     }
 
     public function contact() {
-        return view('contact');
+        return view('frontend.contact');
     }
 
     public function signup() {
-        return view('signup');
+        return view('frontend.signup');
     }
 
     public function login() {
-        return view('login');
+        return view('frontend.login');
     }
 
     public function freeTrial() {
-    return view('free-trial');
+    return view('frontend.free-trial');
 }
 
 

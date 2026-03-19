@@ -109,7 +109,7 @@
 
         <li class="{{ Request::is('admin/guides*') ? 'active' : '' }}">
             <a href="{{ url('admin/guides') }}">
-                <span class="menu-text">Guide</span>
+                <span class="menu-text">Guides</span>
             </a>
         </li>
 

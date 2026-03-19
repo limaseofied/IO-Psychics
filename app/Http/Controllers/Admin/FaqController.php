@@ -82,4 +82,17 @@ class FaqController extends Controller
             ->route('admin.faq.index')
             ->with('success', 'Deleted successfully.');
     }
+
+     public function toggleDisplay(Request $request)
+    {
+        $faq = Faq::findOrFail($request->id);
+
+        $faq->display_in_home = $request->display_in_home;
+        $faq->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Updated successfully'
+        ]);
+    }
 }

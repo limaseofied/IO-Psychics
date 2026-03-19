@@ -109,13 +109,12 @@
                                     <select name="category"  id="category" class="form-control" required>
                                     <option value="">-- Select Category --</option>                                   
                                         <option value="Billing" {{($faq->category=='Billing') ? 'selected' : ''}}>Billing</option>
-                                        <option value="Subscription" {{($faq->category=='Billing') ? 'selected' : ''}}>Subscription </option>
-                                        <option value="Help Center" {{($faq->category=='Billing') ? 'selected' : ''}}>Help Center</option>
+                                        <option value="Subscription" {{($faq->category=='Subscription') ? 'selected' : ''}}>Subscription </option>
+                                        <option value="Help Center" {{($faq->category=='Help Center') ? 'selected' : ''}}>Help Center</option>
                                         <option value="How it Works" {{($faq->category=='How it Works') ? 'selected' : ''}}>How it Works</option>
-                                        <option value="Horoscope" {{($faq->category=='Billing') ? 'selected' : ''}}>Horoscope</option>
-                                        <option value="Tarrot" {{($faq->category=='Billing') ? 'selected' : ''}}>Tarrot</option>
-                                        <option value="Guide" {{($faq->category=='Billing') ? 'selected' : ''}}>Guide</option>
-                                        <option value="Tarrot" {{($faq->category=='Billing') ? 'selected' : ''}}>Tarrot</option>
+                                        <option value="Horoscope" {{($faq->category=='Horoscope') ? 'selected' : ''}}>Horoscope</option>
+                                        <option value="Tarot" {{($faq->category=='Tarot') ? 'selected' : ''}}>Tarot</option>
+                                        <option value="Guide" {{($faq->category=='Guide') ? 'selected' : ''}}>Guide</option>
                                    
                                 </select>
                                 </div>

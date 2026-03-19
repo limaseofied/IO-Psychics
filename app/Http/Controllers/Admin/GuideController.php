@@ -9,6 +9,7 @@ use App\Models\Speciality;
 use App\Models\Tool;
 use App\Models\Skill;
 use App\Models\ReadingStyle;
+use Illuminate\Support\Facades\Storage;
 
 class GuideController extends Controller
 {
@@ -54,10 +55,17 @@ class GuideController extends Controller
             'reading_style_id.*' => 'exists:reading_styles,id',
         ]);
 
-        $data = $request->except(['_token']);
+        $data = $request->except(['_token', 'profile_image']);
 
-        // ✅ Password hashing
-        $data['password'] = bcrypt($request->password);
+         
+       $imageName = null;
+
+        if ($request->hasFile('profile_image')) {
+            $imagePath = $request->file('profile_image')->store('uploads/guide_profile', 'public');
+            $imageName = basename($imagePath);
+        }
+
+        $data['profile_image'] = $imageName;
 
         // ✅ Convert multi-select arrays → string
         $data['speciality_id'] = $request->speciality_id ? implode(',', $request->speciality_id) : null;
@@ -97,6 +105,7 @@ class GuideController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:guides,email,' . $guide->id,
             'phone' => 'required',
+            'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'price_per_session' => 'required|numeric',
             'guide_level' => 'required|in:core,senior,master',
 
@@ -117,13 +126,21 @@ class GuideController extends Controller
             'password' => 'nullable|min:6'
         ]);
 
-        $data = $request->except(['_token', '_method']);
+        $data = $request->except(['_token', '_method', 'profile_image']);
 
-        // ✅ Password hash only if provided
-        if (!empty($request->password)) {
-            $data['password'] = bcrypt($request->password);
-        } else {
-            unset($data['password']);
+        // Handle profile image update
+        if ($request->hasFile('profile_image')) {
+
+            // Delete old image (if exists)
+            if ($guide->profile_image && Storage::disk('public')->exists('uploads/guide_profile/' . $guide->profile_image)) {
+                Storage::disk('public')->delete('uploads/guide_profile/' . $guide->profile_image);
+            }
+
+            // Upload new image
+            $imagePath = $request->file('profile_image')->store('uploads/guide_profile', 'public');
+
+            // Save filename
+            $data['profile_image'] = basename($imagePath);
         }
 
         // ✅ Convert multi-select arrays → string
@@ -131,6 +148,13 @@ class GuideController extends Controller
         $data['tool_id'] = $request->tool_id ? implode(',', $request->tool_id) : null;
         $data['skill_id'] = $request->skill_id ? implode(',', $request->skill_id) : null;
         $data['reading_style_id'] = $request->reading_style_id ? implode(',', $request->reading_style_id) : null;
+
+         // Update password only if provided
+        if ($request->filled('password')) {
+            $data['password'] = $request->password;
+        } else {
+            unset($data['password']);
+        }
 
         $guide->update($data);
 
@@ -142,5 +166,18 @@ class GuideController extends Controller
     {
         Guide::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Deleted successfully');
+    }
+
+    public function toggleDisplay(Request $request)
+    {
+        $guide = Guide::findOrFail($request->id);
+
+        $guide->display_in_home = $request->display_in_home;
+        $guide->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Updated successfully'
+        ]);
     }
 }
