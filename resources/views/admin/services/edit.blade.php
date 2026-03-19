@@ -55,8 +55,6 @@
                         <form method="POST" action="{{ route('admin.services.update', $service->id) }}" 
                               class="form-horizontal" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
-
                             {{-- Title --}}
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Title *</label>
@@ -111,7 +109,7 @@
                             <h4>Steps</h4>
                             <div id="steps-wrapper">
                                 @foreach($service->steps as $index => $step)
-                                <div class="step-item">
+                                <div class="step-item" data-existing-image="{{ $step->image ? '1' : '' }}">
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Step Title</label>
                                         <div class="col-lg-9">
@@ -172,15 +170,13 @@
         </div>
     </div>
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     let stepIndex = {{ $service->steps->count() }};
-    const addBtn = document.getElementById('addStepBtn');
     const wrapper = document.getElementById('steps-wrapper');
 
-    addBtn.addEventListener('click', function () {
-        // Validation: check last step
+    // Add more step
+    document.getElementById('addStepBtn').addEventListener('click', function () {
         const lastStep = wrapper.querySelector('.step-item:last-child');
         const lastTitle = lastStep.querySelector('input[name$="[title]"]').value.trim();
         const lastContent = lastStep.querySelector('textarea[name$="[content]"]').value.trim();
@@ -213,10 +209,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button type="button" class="btn btn-danger btn-sm remove-step">Remove</button>
             </div>
             <hr>
-        </div>
-        `;
+        </div>`;
+
         wrapper.insertAdjacentHTML('beforeend', html);
-        // Initialize Summernote on the new textarea
+
         $(wrapper).find(`textarea[name="steps[${stepIndex}][content]"]`).summernote({
             height: 200,
             toolbar: [
@@ -226,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 ['view', ['codeview']]
             ]
         });
+
         stepIndex++;
     });
 
@@ -235,6 +232,18 @@ document.addEventListener("DOMContentLoaded", function () {
             e.target.closest('.step-item').remove();
         }
     });
+
+    // Initialize Summernote for existing editors
+    $('.editor').summernote({
+        height: 200,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline']],
+            ['para', ['ul', 'ol']],
+            ['insert', ['link']],
+            ['view', ['codeview']]
+        ]
+    });
+
 });
 </script>
 @endsection
