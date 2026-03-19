@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\SubscriptionPlanController;
 use App\Http\Controllers\Admin\PayPerSessionPlanController;
 use App\Http\Controllers\Admin\GuideController;
+ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\HoroscopeDataController;
 
 
@@ -148,6 +149,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('guides/edit/{id}', [GuideController::class, 'edit'])->name('guides.edit');
             Route::post('guides/update/{id}', [GuideController::class, 'update'])->name('guides.update');
             Route::delete('guides/{id}', [GuideController::class, 'destroy'])->name('guides.delete');
+
+           
+            Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+            Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
+            Route::post('testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
+            Route::get('testimonials/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonials.edit');
+            Route::put('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+            Route::delete('testimonials/delete/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.delete');
+
 
             // Daily Horoscope
             Route::get('/daily-horoscope', [HoroscopeDataController::class, 'dailyIndex'])->name('daily.index');

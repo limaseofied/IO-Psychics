@@ -42,7 +42,7 @@
             </ul>
         </li>
 
-    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guides*') || Request::is('admin/pay-per-session*')  ? 'open active' : '' }}">
+    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guides*') || Request::is('admin/pay-per-session*')  || Request::is('admin/testimonials*')  ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
@@ -77,6 +77,12 @@
          <li class="{{ Request::is('admin/faq*') ? 'active' : '' }}">
             <a href="{{ url('admin/faq') }}">
                 <span class="menu-text"> FAQ </span>
+            </a>
+        </li>
+
+          <li class="{{ Request::is('admin/testimonials*') ? 'active' : '' }}">
+            <a href="{{ url('admin/testimonials') }}">
+                <span class="menu-text"> Testimonials </span>
             </a>
         </li>
 
