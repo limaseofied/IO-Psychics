@@ -97,7 +97,7 @@
 
                             {{-- Steps --}}
                             <hr>
-                           <h4>Steps</h4>
+                            <h4>Steps</h4>
 
                             <div id="steps-wrapper">
                                 <div class="step-item">
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Step Image</label>
                                         <div class="col-lg-9">
-                                            <input type="file" name="steps[0][image]" class="form-control" accept=".jpg,.jpeg,.png">
+                                           <input type="file" name="steps[0][image]" class="form-control" accept=".jpg,.jpeg,.png">
                                         </div>
                                     </div>
 
@@ -122,9 +122,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="text-center mb-2">
-                                        <button type="button" class="btn btn-danger btn-sm remove-step">Remove</button>
-                                    </div>
                                     <hr>
                                 </div>
                             </div>
@@ -159,9 +156,7 @@
         </div>
     </div>
 </div>
-@endsection
 
-@section('scripts')
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -169,15 +164,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const addBtn = document.getElementById('addStepBtn');
     const wrapper = document.getElementById('steps-wrapper');
-    
-    console.log(addBtn);
-    console.log(wrapper);
-
-    if (!addBtn || !wrapper) return;
 
     addBtn.addEventListener('click', function () {
-        console.log('Button clicked'); // Should appear in console
 
+        // Validate existing steps before adding a new one
+        const stepItems = wrapper.querySelectorAll('.step-item');
+        for (let i = 0; i < stepItems.length; i++) {
+            const title = stepItems[i].querySelector(`input[name^="steps"][name$="[title]"]`);
+            const image = stepItems[i].querySelector(`input[name^="steps"][name$="[image]"]`);
+            const content = stepItems[i].querySelector(`textarea[name^="steps"][name$="[content]"]`);
+
+            if (!title.value.trim() || !image.value.trim() || !content.value.trim()) {
+                alert('Please fill all fields in existing steps before adding a new one.');
+                return; // Stop adding new step
+            }
+        }
+
+        // All existing steps are filled, add new step
         const html = `
         <div class="step-item">
             <div class="form-group">
@@ -190,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="form-group">
                 <label class="col-lg-3 control-label">Step Image</label>
                 <div class="col-lg-9">
-                    <input type="file" name="steps[${stepIndex}][image]" class="form-control" accept="image/*">
+                    <input type="file" name="steps[${stepIndex}][image]" class="form-control" accept=".jpg,.jpeg,.png">
                 </div>
             </div>
 

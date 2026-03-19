@@ -62,7 +62,7 @@
                                 {{-- Thumbnail --}}
                                 <td>
                                     @if($s->thumbnail)
-                                        <img src="{{ asset($s->thumbnail) }}" width="60">
+                                    <img src="{{ asset('public/storage/uploads/services/thumbnail/'.$s->thumbnail) }}" width="60">
                                     @else
                                         N/A
                                     @endif
@@ -71,7 +71,7 @@
                                 {{-- Banner --}}
                                 <td>
                                     @if($s->banner_image)
-                                        <img src="{{ asset($s->banner_image) }}" width="80">
+                                     <img src="{{ asset('public/storage/uploads/services/banner/'.$s->banner_image) }}" width="80">
                                     @else
                                         N/A
                                     @endif

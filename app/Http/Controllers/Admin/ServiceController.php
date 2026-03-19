@@ -28,9 +28,9 @@ class ServiceController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-            'steps.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'banner_image' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'steps.*.image' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
         ]);
 
         $thumbnailName = null;
@@ -99,9 +99,9 @@ class ServiceController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-            'steps.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'banner_image' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'steps.*.image' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
         ]);
 
         $thumbnailName = $service->thumbnail;
