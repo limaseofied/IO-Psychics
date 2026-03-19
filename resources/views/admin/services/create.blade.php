@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="form-group">
                 <label class="col-lg-3 control-label">Step Content</label>
                 <div class="col-lg-9">
-                    <textarea name="steps[${stepIndex}][content]" class="form-control"></textarea>
+                    <textarea name="steps[${stepIndex}][content]" class="form-control editor"></textarea>
                 </div>
             </div>
 
@@ -212,8 +212,18 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
         wrapper.insertAdjacentHTML('beforeend', html);
-        stepIndex++;
-    });
+
+         // Initialize CKEditor on the new textarea
+   // Initialize Summernote on the new textarea
+        $(wrapper).find(`textarea[name="steps[${stepIndex}][content]"]`).summernote({
+            height: 200,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['para', ['ul', 'ol']],
+                ['insert', ['link']],
+                ['view', ['codeview']]
+            ]
+        });
 
     // REMOVE step (event delegation)
     wrapper.addEventListener('click', function (e) {
