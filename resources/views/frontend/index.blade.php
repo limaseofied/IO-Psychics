@@ -8,8 +8,8 @@
                 Clarity + Compassion
             </h1>
             <div class="banner-btns">
-                <a href="#" class="primary-btn1">Unlock Your Free Trial</a>
-                <a href="#" class="primary-btn2 primary-btn1">View Horoscopes</a>
+                <a href="{{ route('free.trial') }}" class="primary-btn1">Unlock Your Free Trial</a>
+                <a href="{{ route('horoscopes') }}" class="primary-btn2 primary-btn1">View Horoscopes</a>
             </div>
         </div>
     </section>
@@ -36,7 +36,7 @@
                                 Our handpicked Guides offer insightful psychic readings tailored to your unique needs.
                             </p>
                             <div class="banner-featured-box-divider"></div>
-                            <a href="#">Sign-Up</a>
+                            <a href="{{ route('signup') }}">Sign-Up</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                 Guides.
                             </p>
                             <div class="banner-featured-box-divider"></div>
-                            <a href="#">How it Works</a>
+                            <a href="{{ route('how.it.works') }}">How it Works</a>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                 clock.
                             </p>
                             <div class="banner-featured-box-divider"></div>
-                            <a href="#">Contact Us</a>
+                            <a href="{{ route('contact') }}">Contact Us</a>
                         </div>
                     </div>
                 </div>

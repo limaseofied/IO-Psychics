@@ -97,9 +97,48 @@ CREATE TABLE `guides` (
   KEY `reading_style_id` (`reading_style_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 
+
+<a href="{{ route('rewards') }}">IO Rewards</a>
+<a href="{{ route('plans') }}">Plans & Pricing</a>
+<a href="{{ route('signup') }}">Sign Up</a>
+<a href="{{ route('login') }}">Log In</a>
+<a href="{{ route('guides') }}">Guides</a>
+<a href="{{ route('horoscopes') }}">Horoscopes</a>
+<a href="{{ route('tarot') }}">Tarot</a>
+<a href="{{ route('connect.tarot') }}">Connect With Tarot Guides</a>
+<a href="{{ route('topics') }}">Topics</a>
+<a href="{{ route('how.it.works') }}">How It Works</a>
+<a href="{{ route('about') }}">About IO</a>
+<a href="{{ route('contact') }}">Contact</a>
+<a href="{{ route('free.trial') }}" class="primary-btn1">Unlock Your Free Trial</a>
+
+
+------ alter query 19-march-2026 --------
+
+alter table pay_per_session_plans add `guide_level` enum('core','senior','master') DEFAULT 'core';
+ALTER TABLE `faqs` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `category`;
+
+
 ------ to do admin panel ------
 
 Horoscope daily list
-Horoscope Monthly List
+Horoscope Monthly List 
+Testimonials master
+
+Services master (Aromatherapy , Candle Energy,Connecting with Your Spirit Guides,The Art of Tarot)
+--------------------------
+title 
+thumbnail 
+banner image
+small description 
+Full Description 
+Steps (Add More)
+-----------
+image , title , content 
+
+Final thoughts
+
+------ to do website ------
 Sign up page in frontend
-Subscription plan choose by user 
+Subscription plan choose by user
+currently online guides (home page )
