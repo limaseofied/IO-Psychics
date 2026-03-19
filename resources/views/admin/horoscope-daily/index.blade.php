@@ -33,7 +33,7 @@
                             <th>#</th>
                             <th>Sign</th>
                             <th>Date</th>
-                            <th>Personal</th>
+                            <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
