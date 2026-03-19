@@ -101,6 +101,24 @@
                                 </div>
                             </div>
 
+                            {{-- Guide Level --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Guide Level <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-8">
+                                    <select name="guide_level" class="form-control" required>
+                                        <option value="">Select Level</option>
+                                        <option value="core" {{ old('guide_level') == 'core' ? 'selected' : '' }}>Core</option>
+                                        <option value="senior" {{ old('guide_level') == 'senior' ? 'selected' : '' }}>Senior</option>
+                                        <option value="master" {{ old('guide_level') == 'master' ? 'selected' : '' }}>Master</option>
+                                    </select>
+                                    @error('guide_level')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+
                             {{-- Buttons --}}
                             <div class="form-group text-center mt-4">
                                 <button type="submit" class="btn btn-success">

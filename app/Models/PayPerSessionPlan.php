@@ -9,7 +9,8 @@ class PayPerSessionPlan extends Model
 
     protected $fillable = [
         'duration_min',
-        'price'
+        'price',
+        'guide_level'
     ];
 
     public $timestamps = false;

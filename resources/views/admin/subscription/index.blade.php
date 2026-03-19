@@ -60,25 +60,25 @@
                                 <td>{{ $p->name }}</td>
                                 <td>{{ $p->duration_min }}</td>
                                 <td>
-    @php
-        switch($p->guide_level) {
-            case 'core':
-                $badgeClass = 'badge-success';
-                break;
-            case 'senior':
-                $badgeClass = 'badge-warning';
-                break;
-            case 'master':
-                $badgeClass = 'badge-danger';
-                break;
-            default:
-                $badgeClass = 'badge-info';
-        }
-    @endphp
-    <span class="badge {{ $badgeClass }}">
-        {{ ucfirst($p->guide_level) }}
-    </span>
-</td>
+                                    @php
+                                        switch($p->guide_level) {
+                                            case 'core':
+                                                $badgeClass = 'badge-success';
+                                                break;
+                                            case 'senior':
+                                                $badgeClass = 'badge-warning';
+                                                break;
+                                            case 'master':
+                                                $badgeClass = 'badge-danger';
+                                                break;
+                                            default:
+                                                $badgeClass = 'badge-info';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">
+                                        {{ ucfirst($p->guide_level) }}
+                                    </span>
+                                </td>
                                 <td>₹{{ number_format($p->price, 2) }}</td>
                                 <td>{{ \Carbon\Carbon::parse($p->created_at)->format('d-m-Y') }}</td>
                                 <td>

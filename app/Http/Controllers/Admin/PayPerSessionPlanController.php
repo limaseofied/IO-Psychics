@@ -28,11 +28,13 @@ class PayPerSessionPlanController extends Controller
         $request->validate([
             'duration_min' => 'required|numeric|min:1',
             'price' => 'required|numeric|min:1',
+            'guide_level' => 'required|in:core,senior,master',
         ]);
 
         PayPerSessionPlan::create([
             'duration_min' => $request->duration_min,
             'price' => $request->price,
+            'guide_level' => $request->guide_level,
         ]);
 
         return redirect()
@@ -55,11 +57,13 @@ class PayPerSessionPlanController extends Controller
         $request->validate([
             'duration_min' => 'required|numeric|min:1',
             'price' => 'required|numeric|min:1',
+            'guide_level' => 'required|in:core,senior,master',
         ]);
 
         $plan->update([
             'duration_min' => $request->duration_min,
             'price' => $request->price,
+            'guide_level' => $request->guide_level,
         ]);
 
         return redirect()

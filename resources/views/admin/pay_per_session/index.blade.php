@@ -50,6 +50,7 @@
                             <th>#</th>
                             <th>Duration (Minutes)</th>
                             <th>Price (₹)</th>
+                            <th>Guide Level</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -59,6 +60,26 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $p->duration_min }}</td>
                                 <td>₹ {{ number_format($p->price, 2) }}</td>
+                                 <td>
+                                    @php
+                                        switch($p->guide_level) {
+                                            case 'core':
+                                                $badgeClass = 'badge-success';
+                                                break;
+                                            case 'senior':
+                                                $badgeClass = 'badge-warning';
+                                                break;
+                                            case 'master':
+                                                $badgeClass = 'badge-danger';
+                                                break;
+                                            default:
+                                                $badgeClass = 'badge-info';
+                                        }
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">
+                                        {{ ucfirst($p->guide_level) }}
+                                    </span>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.pay-per-session.edit', $p->id) }}"
                                        class="btn btn-xs btn-warning">

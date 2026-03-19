@@ -155,7 +155,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
             Route::post('testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
             Route::get('testimonials/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonials.edit');
-            Route::put('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+            Route::post('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
             Route::delete('testimonials/delete/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.delete');
 
 

@@ -66,8 +66,6 @@
                               class="form-horizontal">
 
                             @csrf
-                            @method('PUT')
-
                             {{-- Name --}}
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">
