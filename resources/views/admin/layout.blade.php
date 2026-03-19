@@ -142,16 +142,13 @@ $(document).ready(function() {
         ga('create', 'UA-52103994-1', 'auto');
         ga('send', 'pageview');
 
-    </script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
 
-    <!-- AUTO LOGOUT SCRIPT -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-     const maxChars = 3000;
+    const maxChars = 3000;
     const $charCount = $('#charCount');
 
-     $('#answer').summernote({
+    $('.editor').summernote({
     height: 200,
     toolbar: [
         ['style', ['bold', 'italic', 'underline']],

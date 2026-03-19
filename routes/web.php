@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PayPerSessionPlanController;
 use App\Http\Controllers\Admin\GuideController;
  use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\HoroscopeDataController;
+use App\Http\Controllers\Admin\ServiceController;
 
 
 // -------------------
@@ -157,6 +158,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('testimonials/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonials.edit');
             Route::post('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
             Route::delete('testimonials/delete/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.delete');
+
+            Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+            Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+            Route::post('/services/store', [ServiceController::class, 'store'])->name('services.store');
+
+            Route::get('/services/edit/{id}', [ServiceController::class, 'edit'])->name('services.edit');
+            Route::post('/services/update/{id}', [ServiceController::class, 'update'])->name('services.update');
+
+            Route::delete('/services/delete/{id}', [ServiceController::class, 'destroy'])->name('services.delete');
 
 
             // Daily Horoscope

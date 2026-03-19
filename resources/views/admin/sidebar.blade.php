@@ -42,7 +42,7 @@
             </ul>
         </li>
 
-    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guides*') || Request::is('admin/pay-per-session*')  || Request::is('admin/testimonials*')  ? 'open active' : '' }}">
+    <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guides*') || Request::is('admin/pay-per-session*')  || Request::is('admin/testimonials*') || Request::is('admin/services*')  ? 'open active' : '' }}">
     
     <a href="#" class="menu-dropdown">
         <i class="menu-icon glyphicon glyphicon-book"></i>
@@ -80,9 +80,15 @@
             </a>
         </li>
 
-          <li class="{{ Request::is('admin/testimonials*') ? 'active' : '' }}">
+        <li class="{{ Request::is('admin/testimonials*') ? 'active' : '' }}">
             <a href="{{ url('admin/testimonials') }}">
                 <span class="menu-text"> Testimonials </span>
+            </a>
+        </li>
+
+         <li class="{{ Request::is('admin/services*') ? 'active' : '' }}">
+            <a href="{{ url('admin/services') }}">
+                <span class="menu-text"> Services </span>
             </a>
         </li>
 

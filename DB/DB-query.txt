@@ -1,0 +1,41 @@
+------ alter query 19-march-2026 --------
+
+alter table pay_per_session_plans add `guide_level` enum('core','senior','master') DEFAULT 'core';
+ALTER TABLE `faqs` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `category`;
+
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content` text  NULL,  
+  `status` enum('active','inactive') DEFAULT 'inactive',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `services` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `thumbnail` VARCHAR(255) DEFAULT NULL,
+  `banner_image` VARCHAR(255) DEFAULT NULL,
+  `small_description` TEXT NULL,
+  `full_description` LONGTEXT NULL,
+  `final_thoughts` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `service_steps` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `service_id` INT(11) NOT NULL,
+  `image` VARCHAR(255) DEFAULT NULL,
+  `title` VARCHAR(255) DEFAULT NULL,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`service_id`) REFERENCES `services`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

@@ -113,20 +113,6 @@ CREATE TABLE `guides` (
 <a href="{{ route('free.trial') }}" class="primary-btn1">Unlock Your Free Trial</a>
 
 
------- alter query 19-march-2026 --------
-
-alter table pay_per_session_plans add `guide_level` enum('core','senior','master') DEFAULT 'core';
-ALTER TABLE `faqs` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `category`;
-
-CREATE TABLE `testimonials` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `content` text  NULL,  
-  `status` enum('active','inactive') DEFAULT 'inactive',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ------ to do admin panel ------
 
@@ -140,13 +126,13 @@ Services master (Aromatherapy , Candle Energy,Connecting with Your Spirit Guides
 title 
 thumbnail 
 banner image
-small description 
-Full Description 
+small description  (editor)
+Full Description  (editor)
 Steps (Add More)
 -----------
-image , title , content 
+image , title , content (editor)
 
-Final thoughts
+Final thoughts (editor)
 
 ------ to do website ------
 Sign up page in frontend
