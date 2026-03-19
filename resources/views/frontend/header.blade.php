@@ -2,7 +2,7 @@
         <div class="header-logo-bar">
             <div class="header-btn">
                 {{-- <a href="#">IO Rewards</a> --}}
-                <a href="{{ route('rewards') }}">Plans & Pricing</a>
+                <a href="{{ route('plans') }}">Plans & Pricing</a>
                 <a href="{{ route('signup') }}">Sign Up</a>
                 <a href="{{ route('login') }}">Log In</a>
             </div>
@@ -31,7 +31,7 @@
                         <li><a href="{{ route('topics') }}">Topics</a></li>
                         <li>
                             <div class="header-logo">
-                                <a href="{{ route('/') }}">
+                                <a href="{{ route('home') }}">
                                     <img src="{{ asset('frontassets/images/website_log.webp')}}" alt="" class="website-logo">
                                 </a>
                             </div>
@@ -46,7 +46,7 @@
 
             <div class="site-mobile-menu-sec d-flex d-lg-none">
                 <div class="header-logo">
-                    <a href="{{ route('/') }}">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('frontassets/images/website_log.webp')}}" alt="" class="website-logo">
                     </a>
                 </div>
