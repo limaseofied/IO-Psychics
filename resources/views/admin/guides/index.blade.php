@@ -64,8 +64,12 @@
                             <td>{{ $g->phone }}</td>
                             <td>{{ $g->guide_level }}</td>
                             <td>₹ {{ number_format($g->price_per_min, 2) }}</td>
-                            <td>
-                                {{ $g->status ? 'Active' : 'Inactive' }}
+                             <td>
+                                @if($g->status == 'active')
+                                    <span class="badge badge-success">Active</span>
+                                @else
+                                    <span class="badge badge-danger">Inactive</span>
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ route('admin.guides.edit', $g->id) }}" class="btn btn-xs btn-warning">

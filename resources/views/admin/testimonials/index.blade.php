@@ -36,10 +36,16 @@
                     <tbody>
                         @forelse($testimonials as $index => $t)
                             <tr>
-                                <td>{{ $testimonials->firstItem() + $index }}</td>
+                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $t->name }}</td>
                                 <td>{{ Str::limit($t->content, 250) }}</td>
-                                <td>{{ ucfirst($t->status) }}</td>
+                                <td>
+                                    @if($t->status == 'active')
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-danger">Inactive</span>
+                                    @endif
+                                </td>
                                 <td>{{ \Carbon\Carbon::parse($t->created_at)->format('F d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.testimonials.edit', $t->id) }}" class="btn btn-xs btn-warning">

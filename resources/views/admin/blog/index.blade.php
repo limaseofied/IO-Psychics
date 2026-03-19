@@ -65,10 +65,10 @@
                                 @endif
                             </td>
                             <td>
-                                @if($blog->status == 1)
-                                    <span class="label label-success">Active</span>
+                                @if($blog->status == 'active')
+                                    <span class="badge badge-success">Active</span>
                                 @else
-                                    <span class="label label-danger">Inactive</span>
+                                    <span class="badge badge-danger">Inactive</span>
                                 @endif
                             </td>
                             <td>{{ \Carbon\Carbon::parse($blog->created_at)->format('d-m-Y') }}</td>
