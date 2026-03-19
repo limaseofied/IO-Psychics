@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\SubscriptionPlanController;
 use App\Http\Controllers\Admin\PayPerSessionPlanController;
 use App\Http\Controllers\Admin\GuideController;
+use App\Http\Controllers\Admin\HoroscopeDataController;
 
 
 // -------------------
@@ -148,9 +149,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('guides/update/{id}', [GuideController::class, 'update'])->name('guides.update');
             Route::delete('guides/{id}', [GuideController::class, 'destroy'])->name('guides.delete');
 
+            // Daily Horoscope
+            Route::get('/daily-horoscope', [HoroscopeDataController::class, 'dailyIndex'])->name('daily.index');
+        
+            // Monthly Horoscope
+            Route::get('/monthly-horoscope', [HoroscopeDataController::class, 'monthlyIndex'])->name('monthly.index');
+});
 
-    
-    });
 });
 
 

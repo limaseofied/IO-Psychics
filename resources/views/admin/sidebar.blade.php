@@ -15,11 +15,31 @@
             </a>
         </li>
 
-        <li class="{{ Request::is('admin/horoscope-signs*') ? 'active' : '' }}">
-            <a href="{{ url('admin/horoscope-signs') }}">
-                <i class="menu-icon glyphicon glyphicon-home"></i>
-                <span class="menu-text"> Horoscope Sign </span>
+        <li class="menu-dropdown {{ Request::is('admin/horoscope-signs*') || Request::is('admin/daily-horoscope*') || Request::is('admin/monthly-horoscope*')  ? 'open active' : '' }}">    
+            <a href="#" class="menu-dropdown">
+                <i class="menu-icon glyphicon glyphicon-book"></i>
+                <span class="menu-text">Manage Horoscope</span>
+                <i class="menu-expand"></i>
             </a>
+            <ul class="submenu">
+                <li class="{{ Request::is('admin/horoscope-signs*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/horoscope-signs') }}">
+                        <span class="menu-text"> Horoscope Sign </span>
+                    </a>
+                </li>
+
+                <li class="{{ Request::is('admin/daily-horoscope*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/daily-horoscope') }}">
+                        <span class="menu-text">Daily Horoscope </span>
+                    </a>
+                </li>
+
+                <li class="{{ Request::is('admin/monthly-horoscope*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/monthly-horoscope') }}">
+                        <span class="menu-text">Monthly Horoscope</span>
+                    </a>
+                </li>
+            </ul>
         </li>
 
     <li class="menu-dropdown {{ Request::is('admin/specialities*') || Request::is('admin/tools*') || Request::is('admin/skills*') || Request::is('admin/readingstyles*') || Request::is('admin/faq*') || Request::is('admin/subscription*') || Request::is('admin/guides*') || Request::is('admin/pay-per-session*')  ? 'open active' : '' }}">
