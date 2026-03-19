@@ -114,10 +114,10 @@
 
                             {{-- Price --}}
                             <div class="form-group">
-                                <label class="col-lg-4 control-label">Price per Min *</label>
+                                <label class="col-lg-4 control-label">Price per Session *</label>
                                 <div class="col-lg-8">
-                                    <input type="text" name="price_per_min" class="form-control"
-                                           value="{{ old('price_per_min', $guide->price_per_min) }}">
+                                    <input type="text" name="price_per_session" class="form-control"
+                                           value="{{ old('price_per_session', $guide->price_per_session) }}">
                                 </div>
                             </div>
 

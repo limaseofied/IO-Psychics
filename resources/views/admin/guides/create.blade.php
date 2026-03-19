@@ -134,8 +134,8 @@
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Price/Min</label>
                                 <div class="col-lg-8">
-                                    <input type="number" name="price_per_min" class="form-control"
-                                           value="{{ old('price_per_min') }}">
+                                    <input type="number" name="price_per_session" class="form-control"
+                                           value="{{ old('price_per_session') }}">
                                 </div>
                             </div>
 

@@ -16,7 +16,7 @@ class Guide extends Model
         'experience',
         'rating',
         'guide_level',
-        'price_per_min',
+        'price_per_session',
         'speciality_id',
         'tool_id',
         'skill_id',

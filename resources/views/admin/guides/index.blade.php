@@ -63,7 +63,7 @@
                             <td>{{ $g->email }}</td>
                             <td>{{ $g->phone }}</td>
                             <td>{{ $g->guide_level }}</td>
-                            <td>₹ {{ number_format($g->price_per_min, 2) }}</td>
+                            <td>$ {{ number_format($g->price_per_session, 2) }}</td>
                              <td>
                                 @if($g->status == 'active')
                                     <span class="badge badge-success">Active</span>

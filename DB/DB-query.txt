@@ -39,3 +39,7 @@ CREATE TABLE `service_steps` (
   FOREIGN KEY (`service_id`) REFERENCES `services`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--------------------- 20 march 2026 --------
+
+ALTER TABLE `guides` CHANGE `price_per_min` `price_per_session` DECIMAL(10,2) NULL DEFAULT '0.00';
+

@@ -118,7 +118,7 @@ CREATE TABLE `guides` (
   `experience` int(11) DEFAULT 0,
   `rating` decimal(2,1) DEFAULT 0.0,
   `guide_level` enum('core','senior','master') DEFAULT 'core',
-  `price_per_min` decimal(10,2) DEFAULT 0.00,
+  `price_per_session` decimal(10,2) DEFAULT 0.00,
   `speciality_id` varchar(150) DEFAULT NULL,
   `tool_id` varchar(150) DEFAULT NULL,
   `skill_id` varchar(150) DEFAULT NULL,

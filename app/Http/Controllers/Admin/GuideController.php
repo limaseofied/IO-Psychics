@@ -37,7 +37,7 @@ class GuideController extends Controller
             'email' => 'required|email|unique:guides,email',
             'phone' => 'required',
             'password' => 'required|min:6',
-            'price_per_min' => 'required|numeric',
+            'price_per_session' => 'required|numeric',
             'guide_level' => 'required|in:core,senior,master',
 
             // ✅ Multi-select validation
@@ -97,7 +97,7 @@ class GuideController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:guides,email,' . $guide->id,
             'phone' => 'required',
-            'price_per_min' => 'required|numeric',
+            'price_per_session' => 'required|numeric',
             'guide_level' => 'required|in:core,senior,master',
 
             // ✅ Multi-select validation

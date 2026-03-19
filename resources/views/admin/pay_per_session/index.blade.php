@@ -49,7 +49,7 @@
                         <tr>
                             <th>#</th>
                             <th>Duration (Minutes)</th>
-                            <th>Price (₹)</th>
+                            <th>Price ($)</th>
                             <th>Guide Level</th>
                             <th>Action</th>
                         </tr>
@@ -59,7 +59,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $p->duration_min }}</td>
-                                <td>₹ {{ number_format($p->price, 2) }}</td>
+                                <td>$ {{ number_format($p->price, 2) }}</td>
                                  <td>
                                     @php
                                         switch($p->guide_level) {

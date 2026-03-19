@@ -83,7 +83,7 @@
                             {{-- Price --}}
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">
-                                    Price (₹) <span class="text-danger">*</span>
+                                    Price ($) <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-8">
                                     <input type="number"

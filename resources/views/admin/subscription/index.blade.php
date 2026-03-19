@@ -79,7 +79,7 @@
                                         {{ ucfirst($p->guide_level) }}
                                     </span>
                                 </td>
-                                <td>₹{{ number_format($p->price, 2) }}</td>
+                                <td>${{ number_format($p->price, 2) }}</td>
                                 <td>{{ \Carbon\Carbon::parse($p->created_at)->format('d-m-Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.subscription.edit', $p->id) }}" class="btn btn-xs btn-warning">
