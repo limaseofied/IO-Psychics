@@ -4,18 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Forgot Password - IO Psychics</title>
+    <title>Blog - IO Psychics</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="./css/jquery-ui.css">
     <link rel="stylesheet" href="./css/jquery.timepicker.min.css">
-    <link rel="stylesheet" href="./css/mediaelementplayer.min.css">
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/google-fonts.css">
     <link rel="shortcut icon" href="./images/buttonstar.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.16/build/mediaelementplayer.min.css">
+
 </head>
 
 <body>
@@ -114,33 +115,222 @@
 
     <!-- ================= Body Section Start ==================== -->
     <section class="custom-breadcrumb">
-        <!-- <h3 class="custom-breadcrumb-sub-title">Meet IO Psychics</h3> -->
-        <h2 class="custom-breadcrumb-title">Forgot Password</h2>
-        <!-- <p class="custom-breadcrumb-description">
-            We’re a close-knit community of gifted psychics, astrologers, and spiritual guides dedicated to
-            supporting you on your journey toward clarity.
-        </p> -->
+        <h3 class="custom-breadcrumb-sub-title">Wellness & Wisdom</h3>
+        <h2 class="custom-breadcrumb-title">Blog</h2>
+        <p class="custom-breadcrumb-description">
+            Welcome to the IO Psychics Wellness & Wisdom Blog - Your trusted source for articles on spiritual wellness,
+            intuitive practices, and psychic perspectives. Journey into a world of inspiration, guidance, and clarity to
+            enrich your life's experiences.
+        </p>
     </section>
 
-    <section class="inner-page custom-gradinnercontent">
-        <div class="form-page-content sign-in-up-page">
-            <form action="">
-                <div class="primary-form">
-                    <div class="primary-form-header pb-2">
-                        <p class="primary-form-header-description">
-                            Please enter your email address or username below.
-                        </p>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-md-12 col-lg-12 primary-form-col">
-                            <label for="username" class="form-label floating-label">* Username OR Email Address</label>
-                            <input type="text" class="form-control floating-input" id="username" name="username">
+    <section class="inner-page custom-gradinnercontent blog-listing-page plr-100 pt-80 pb-80">
+
+        <div class="filter-section blog-listing">
+            <ul class="filter-list">
+                <li>
+                    <div class="filter-box">
+                        <div class="filter-header" onclick="toggleFilter()">
+                            <span>CATEGORIES</span>
+                        </div>
+                        <div class="filterBody">
+                            <input type="text" class="search-box" placeholder="Search">
+
+                            <div class="checkbox-list">
+                                <label><input type="checkbox"> Aromatherapy (1)</label>
+                                <label><input type="checkbox"> Astrology (1)</label>
+                                <label><input type="checkbox"> Chakras (1)</label>
+                                <label><input type="checkbox"> Crystals (1)</label>
+                                <label><input type="checkbox"> Energy (1)</label>
+                                <label><input type="checkbox"> Guides (1)</label>
+                                <label><input type="checkbox"> Manifestation (1)</label>
+                                <label><input type="checkbox"> Meditation (1)</label>
+                                <label><input type="checkbox"> Reiki (1)</label>
+                                <label><input type="checkbox"> Tarot (1)</label>
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="primary-form-btn mt-4">Submit</button>
-                </div>
-            </form>
+                </li>
+                <li>
+                    <div class="filter-search-form-container">
+                        <form action="">
+                            <div class="filter-search-form-box">
+                                <input type="text" class="form-control" id="" name="" placeholder="Search">
+                                <button type="submit" class="filter-search-form-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
         </div>
+
+        <div class="blog-listing-container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/aromatherapy-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Aromatherapy
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Aromatherapy
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/candle-banner-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Energy
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Candle Energy
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/spirit-guides-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Guides
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Connecting with Your Spirit Guides
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/tarot-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Tarot
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            The Art of Tarot
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/reiki-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Reiki
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Exploring the Different Types of Reiki and Their Benefits
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/manifestation-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Manifestation
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Power of Intention
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/astrology-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Astrology
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Astrology for Beginners
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/meditations-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Meditation
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Meditation
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/Chakras-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Chakras
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Understanding Chakras
+                        </a>
+                        <span class="blog-box-date">
+                            November 14, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-box">
+                        <a href="#" class="blog-box-featured-img">
+                            <img src="./images/crystals-400x400.webp" alt="">
+                        </a>
+                        <a href="#" class="blog-box-category">
+                            Crystals
+                        </a>
+                        <a href="#" class="blog-box-title">
+                            Crystals 101
+                        </a>
+                        <span class="blog-box-date">
+                            October 28, 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     <!-- ================= Body Section End ==================== -->
 
@@ -257,6 +447,13 @@
     </button>
     <!-- -------- Bottom to Top Scroll Button and Whatsapp Button End ------------->
 
+
+    <script>
+        // ====================== Custom Design Video Controls in "How it works" page ===========
+        document.addEventListener('DOMContentLoaded', function () { const player = new MediaElementPlayer('player', { features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'], stretching: 'responsive' }); });
+
+    </script>
+
     <script src="./js/jquery.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
@@ -264,8 +461,7 @@
     <script src="./js/custom.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
     <script src="./js/jquery.timepicker.min.js"></script>
-    <script src="./js/mediaelement-and-player.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/mediaelement@4.2.16/build/mediaelement-and-player.min.js"></script>
 
 </body>
 

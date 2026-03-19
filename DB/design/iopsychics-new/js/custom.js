@@ -599,12 +599,23 @@ $(document).ready(function () {
 });
 // ======================== For Filter Drop Down
 document.querySelectorAll(".filter-header").forEach(header => {
-  header.addEventListener("click", function () {
+  header.addEventListener("click", function (e) {
+    e.stopPropagation(); // prevent document click
     const box = this.closest(".filter-box");
     const body = box.querySelector(".filterBody");
 
     body.classList.toggle("active");
     this.classList.toggle("active");
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function (e) {
+  document.querySelectorAll(".filter-box").forEach(box => {
+    if (!box.contains(e.target)) {
+      box.querySelector(".filterBody").classList.remove("active");
+      box.querySelector(".filter-header").classList.remove("active");
+    }
   });
 });
 // =================== Form Label of input fieled click in Form pages ====
