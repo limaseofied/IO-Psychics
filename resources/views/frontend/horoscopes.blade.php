@@ -1,5 +1,4 @@
 @extends('frontend.layout')
-
 @section('content')
     <section class="custom-breadcrumb">
         <h3 class="custom-breadcrumb-sub-title">Find Your Guide</h3>
@@ -19,7 +18,7 @@
                     Find out what the planets have in store for you. Select your sign and check out your daily, weekly,
                     monthly, or yearly horoscope.
                 </p>
-                <a href="{{'free.trial'}}" class="primary-btn1 mt-3">Unlock Your Free Trial</a>
+                <a href="{{route('free.trial')}}" class="primary-btn1 mt-3">Unlock Your Free Trial</a>
             </div>
 
             <div class="horoscopes-card-section plr-40 pt-80">
@@ -27,13 +26,13 @@
                      @foreach($signs as $s)
                     <div class="col-lg-3 col-md-6">
                         <div class="horoscopes-card">
-                            <a href="{{'horoscope?sign='.$s->slug}}" class="horoscopes-card-svg">
+                            <a href="{{route('horoscopes?sign='.$s->slug)}}" class="horoscopes-card-svg">
                                <img src="{{asset('public/storage/uploads/horoscope_image/'.$s->image)}}">
                             </a>
-                            <a href="{{'horoscope?sign='.$s->slug}}" class="horoscopes-card-title">
+                            <a href="{{route('horoscopes?sign='.$s->slug)}}" class="horoscopess-card-title">
                                 {{$s->name}}
                             </a>
-                            <a href="{{'horoscope?sign='.$s->slug}}" class="horoscopes-card-date">
+                            <a href="{{route('horoscopes?sign='.$s->slug)}}" class="horoscopes-card-date">
                                 {{$s->date_range}}
                             </a>
                         </div>
@@ -255,7 +254,7 @@
                 <div class="owl-carousel owl-theme owl-categories-slider primary-owl-carousel">
                      @foreach ($specialities as $sp)
                     <div class="items">
-                        <a href="{{'guides?category='.$sp->slug}}" class="categories-slider-box">
+                        <a href="{{route('guides?category='.$sp->slug)}}" class="categories-slider-box">
                             <img src="{{asset('public/storage/uploads/specialities/'.$sp->image)}}" alt="{{$sp->name}}">
                             <span>{{$sp->name}}</span>
                         </a>
@@ -273,7 +272,7 @@
                 <p>
                     Our support specialists can guide you through the selection, account setup, and payment process.
                 </p>
-                <a href="{{'signup'}}" class="primary-btn1 bg-transparent">Sign Up Today</a>
+                <a href="{{route('signup')}}" class="primary-btn1 bg-transparent">Sign Up Today</a>
             </div>
 
             <div class="custom-faq-sec">
