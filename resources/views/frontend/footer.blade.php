@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="copyright-content text-center">
-                        <p>©2026 IO Psychics. All Rights Reserved.
+                        <p>©{{date('Y')}} IO Psychics. All Rights Reserved.
                             <a href="#"> Customer Terms of Use.</a>
                             <a href="#"> Psychics Terms of Use.</a>
                             <a href="#"> Disclaimer.</a>
