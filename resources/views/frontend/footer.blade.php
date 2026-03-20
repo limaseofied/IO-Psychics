@@ -5,12 +5,12 @@
                     <div class="quick-links">
                         <h2 class="footer-title">Explore</h2>
                         <ul>
-                            <li><a href="#">About IO</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Horoscopes</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Plans & Pricing</a></li>
-                            <li><a href="#">IO Rewards</a></li>
+                            <li><a href="{{ route('about') }}">About IO</a></li>
+                            <li><a href="{{ route('how.it.works') }}">How It Works</a></li>
+                            <li><a href="{{ route('horoscopes') }}">Horoscopes</a></li>
+                            <li><a href="{{ route('blog') }}">Blog</a></li>
+                            <li><a href="{{ route('plans') }}">Plans & Pricing</a></li>
+                            {{-- <li><a href="#">IO Rewards</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -18,19 +18,19 @@
                     <div class="quick-links">
                         <h2 class="footer-title">Meet Guides</h2>
                         <ul>
-                            <li><a href="#">All Guides</a></li>
-                            <li><a href="#">Love Guides</a></li>
-                            <li><a href="#">Career & Finance Guides</a></li>
-                            <li><a href="#">Mediums</a></li>
-                            <li><a href="#">Tarot</a></li>
-                            <li><a href="#">Connect by Topic</a></li>
+                            <li><a href="{{ route('guides') }}">All Guides</a></li>
+                            <li><a href="{{ route('guides') }}">Love Guides</a></li>
+                            <li><a href="{{ route('guides') }}">Career & Finance Guides</a></li>
+                            <li><a href="{{ route('guides') }}">Mediums</a></li>
+                            <li><a href="{{ route('guides') }}">Tarot</a></li>
+                            <li><a href="{{ route('guides') }}">Connect by Topic</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="quick-links footer-logo-social-btns">
                         <img src="{{ asset('frontassets/images/website_log.webp')}}" alt="" class="footer-logo">
-                        <a href="#" class="primary-btn1">Unlock Your Free Trial</a>
+                        <a href="{{ route('free.trial') }}" class="primary-btn1">Unlock Your Free Trial</a>
                         <ul class="footer-social">
                             <li>
                                 <a href="#" target="_blank">
@@ -54,11 +54,11 @@
                     <div class="quick-links">
                         <h2 class="footer-title">Seeker Support</h2>
                         <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Seeker Support</a></li>
-                            <li><a href="#">Guide Support</a></li>
-                            <li><a href="#">Become A Gifted Guide</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ route('help-center') }}">Help Center</a></li>
+                            <li><a href="{{ route('contact') }}">Seeker Support</a></li>
+                            <li><a href="{{ route('contact') }}">Guide Support</a></li>
+                            <li><a href="{{ route('become-gifted-guide') }}">Become A Gifted Guide</a></li>
                         </ul>
                     </div>
                 </div>

@@ -65,8 +65,18 @@ class HomeController extends Controller
     }
 
     public function freeTrial() {
-    return view('frontend.free-trial');
-}
+       return view('frontend.free-trial');
+    }
+
+     public function help_center() {
+       return view('frontend.help-center');
+    }
+
+     public function become_gifted_guide() {
+       return view('frontend.become-gifted-guide');
+    }
+
+    
 
 
 }

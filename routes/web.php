@@ -194,6 +194,9 @@ Route::get('/topics', [HomeController::class, 'topics'])->name('topics');
 Route::get('/how-it-works', [HomeController::class, 'howItWorks'])->name('how.it.works');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/become-gifted-guide', [HomeController::class, 'become_gifted_guide'])->name('become-gifted-guide');
+Route::get('/help-center', [HomeController::class, 'help_center'])->name('help-center');
 // Free Trial
 Route::get('/free-trial', [HomeController::class, 'freeTrial'])->name('free.trial');
 // Auth Pages
