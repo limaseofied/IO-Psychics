@@ -29,8 +29,10 @@ class HoroscopeSignController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'icon' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'traits' => 'required|string',       // Traits can be optional text
+            'personality' => 'required|string',  // Personality can be optional text
         ]);
 
         $iconName = null;
@@ -72,6 +74,8 @@ class HoroscopeSignController extends Controller
             'slug' => $slug,
             'icon' => $iconName,
             'image' => $imageName,
+            'traits' => $request->traits,
+            'personality' =>$request->personality,
         ]);
 
         return redirect()->route('admin.signs.index')
@@ -91,7 +95,9 @@ class HoroscopeSignController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'traits' => 'required|string',       // Traits can be optional text
+            'personality' => 'required|string',  // Personality can be optional text
         ]);
 
         $slug = Str::slug($request->name);
@@ -123,6 +129,8 @@ class HoroscopeSignController extends Controller
             'slug' => $slug,
             'icon' => $iconName,
             'image' => $imageName,
+            'traits' => $request->traits,
+            'personality' =>$request->personality,
         ]);
 
         return redirect()

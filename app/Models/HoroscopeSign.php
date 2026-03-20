@@ -19,7 +19,9 @@ class HoroscopeSign extends Model
         'name',
         'slug',
         'icon',
-        'image'
+        'image',
+        'traits',
+        'personality'
     ];
 
 

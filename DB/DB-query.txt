@@ -47,3 +47,33 @@ ALTER TABLE `guides` ADD `profile_image` VARCHAR(255) NULL DEFAULT NULL AFTER `p
 
 ALTER TABLE `guides` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `updated_at`;
 
+
+--------------- 20 march ------
+
+ALTER TABLE guides  ADD COLUMN is_online TINYINT(1) DEFAULT 0;
+ALTER TABLE guides  ADD COLUMN last_seen DATETIME DEFAULT NULL;
+ALTER TABLE horoscope_signs ADD COLUMN traits TEXT,ADD COLUMN personality TEXT;
+
+--------------------
+SELECT *,
+  CASE 
+    WHEN last_seen >= NOW() - INTERVAL 2 MINUTE THEN 1 
+    ELSE 0 
+  END AS is_online
+FROM guides;
+
+1. When guide logs in
+
+As soon as login is successful:
+
+UPDATE guides 
+SET is_online = 1,
+    last_seen = NOW()
+WHERE id = ?;
+
+. When guide logs out
+UPDATE guides 
+SET is_online = 0,
+    last_seen = NOW()
+WHERE id = ?;
+

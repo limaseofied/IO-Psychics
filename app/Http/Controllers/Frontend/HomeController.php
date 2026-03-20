@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contacts;
+use App\Models\HoroscopeSign;
+use App\Models\Speciality;
 use App\Mail\ContactFormSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -25,7 +27,9 @@ class HomeController extends Controller
     }
 
     public function horoscopes() {
-        return view('frontend.horoscopes');
+        $signs = HoroscopeSign::all();
+        $specialities = Speciality::all();
+        return view('frontend.horoscopes', compact('signs','specialities'));
     }
 
     public function tarot() {

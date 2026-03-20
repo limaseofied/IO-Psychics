@@ -96,6 +96,26 @@
                                 </div>
                             </div>
 
+                              {{-- Traits --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Traits
+                                </label>
+                                <div class="col-lg-8">
+                                    <textarea name="traits" id="traits" class="form-control" required rows="3" placeholder="Enter Traits">{{ $sign->traits }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- Personality --}}
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Personality
+                                </label>
+                                <div class="col-lg-8">
+                                    <textarea name="personality" id="personality" required class="form-control" rows="4" placeholder="Enter Personality Description">{{ $sign->personality }}</textarea>
+                                </div>
+                            </div>
+
                             {{-- Icon --}}
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Icon</label>
