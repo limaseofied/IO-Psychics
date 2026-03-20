@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2026 at 04:50 PM
+-- Generation Time: Mar 20, 2026 at 08:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin_master` (
 --
 
 INSERT INTO `admin_master` (`id`, `name`, `phone`, `email`, `password`, `last_login`, `created_on`, `updated_on`, `status`) VALUES
-(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-19 14:26:21', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
+(1, 'Super Admin Panel', '7978817539', 'admin@example.com', '$2y$10$sIi7dK4WxaALbLmJto97U.NznW6DorNLiYjpksEJ9BxopUMPwp/S2', '2026-03-20 06:58:28', '2025-11-11 19:11:04', '2025-11-11 19:11:04', 1);
 
 -- --------------------------------------------------------
 
@@ -169,30 +169,32 @@ CREATE TABLE `guides` (
   `status` tinyint(4) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `display_in_home` int(11) NOT NULL DEFAULT 0
+  `display_in_home` int(11) NOT NULL DEFAULT 0,
+  `is_online` tinyint(1) DEFAULT 0,
+  `last_seen` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `guides`
 --
 
-INSERT INTO `guides` (`id`, `name`, `email`, `phone`, `profile_image`, `password`, `address`, `experience`, `rating`, `guide_level`, `price_per_session`, `speciality_id`, `tool_id`, `skill_id`, `reading_style_id`, `status`, `created_at`, `updated_at`, `display_in_home`) VALUES
-(1, 'Lima Mohanty', 'mohantylima71@gmail.com', '8763447921', '41BRZlBauiUJmYmtK6JOSQ8Arefxw7LScuYytxAu.jpg', '$2y$10$s/g73Wp0ZcJWUtUaioc4XuE5DSnCjePh746vPKoe4foKf9o5dgExy', 'India', 10, 5.0, 'senior', 2.00, '3,4,5,6,7,8,9,10,11,12,13,14,15', '1,2,3,4,5,6,7', '1,2,3,4,5,6', '1,2,3', 1, '2026-03-18 09:51:30', '2026-03-19 09:27:17', 0),
-(2, 'Rahul Sharma', 'rahul1@example.com', '9876543210', 'Clyc3SZSGROd4l0XORQjXkdSbgU6Ful5PrlIg6BB.jpg', '$2y$10$FcHIVELebGMQjorDVuZKE.k1qPI3X5ZAphiYuMSwKS7q.jKGyHK36', 'Mumbai', 5, 4.5, 'core', 50.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:44:37', 1),
-(3, 'Priya Singh', 'priya2@example.com', '9876543211', 'ZFndPfISSHfjquujutO83lfXi8Fxh22PYMVsTzM1.jpg', '$2y$10$Z32kSW14RnMhQPAbPDNdj.jGfY.SUnGs4djeupVpzTqIZE5lOFFmO', 'Delhi', 8, 4.8, 'senior', 80.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:26', 1),
-(4, 'Amit Verma', 'amit3@example.com', '9876543212', 'LmZ7k3Q9p96MqNHHz8RvRpTTt5XCj9vtkLMalC6N.jpg', '$2y$10$hq9mgey6bj5QORwxP1HdweHHpIXT5jWu8SkZ0Q7XM90d/P8FI7hPC', 'Bangalore', 3, 4.2, 'core', 40.00, '1', '3', '1', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:27', 1),
-(5, 'Sneha Patel', 'sneha4@example.com', '9876543213', 'mBPyq7H57dMYo22VCHOmWtz7PRCCBnCdZSA2UCRB.jpg', '$2y$10$V1pHE9/vAM1spBWoGQM2f./3XugWHfYy6cMFmuP3wKu09L1QJTry6', 'Ahmedabad', 10, 4.9, 'master', 120.00, '3', '1', '3', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:28', 1),
-(6, 'Rohit Kumar', 'rohit5@example.com', '9876543214', 'C2KVOybyy1Zx84R0e8GA3INmsIwyJcbXFX00xA0X.jpg', '$2y$10$u3kq/4KOzldGUEYG2aHH..oIMb5pCKCvTTF6QiqivhNaSjvZ8xY1S', 'Pune', 6, 4.4, 'senior', 70.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:12', 0),
-(7, 'Neha Gupta', 'neha6@example.com', '9876543215', 'KX0JAqbkj7AAwcEWUpne4L84bzXu1ryITHhLkeAI.jpg', '$2y$10$C59wXE1G4m01.jI4QabuZOZl7QQGx/hOCGe0cCNOAp5a7yIWkw/tu', 'Jaipur', 4, 4.1, 'core', 45.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:26', 0),
-(8, 'Vikas Yadav', 'vikas7@example.com', '9876543216', 'OmKIkhtV0G7DHqXHISM5gq4q7M85O7a0fTWlVQph.jpg', '$2y$10$ztVn7bEC8JZnKvPq/bT3g.tHkVNbaoKKSZVU2dL0tpvD0cAxPXPYi', 'Lucknow', 7, 4.6, 'senior', 75.00, '2', '3', '2', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:40', 0),
-(9, 'Pooja Mehta', 'pooja8@example.com', '9876543217', 'DKjTgfKXuCjHTfNkFz36G0qiKrx3xuT2nkJZX1cK.jpg', '$2y$10$YWzXIJHe4azgSooKD46svONe6F45EvdbPjOid7/ECoujspwoxCVtm', 'Surat', 9, 4.7, 'master', 110.00, '3', '2', '3', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:56', 0),
-(10, 'Karan Malhotra', 'karan9@example.com', '9876543218', 'SiPn9hKaBRFQauzOuom5w0TGQUiDszXgvV4yVhi6.jpg', '$2y$10$SXMIAmCW2zlBTVDN6V7tGuytHZZhb5XJrNjZm1zyQRFswHK/2Cw8m', 'Chandigarh', 2, 3.9, 'core', 35.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:33:28', 0),
-(11, 'Anjali Desai', 'anjali10@example.com', '9876543219', 'XtuVcQmLahFbYzk30oKU4PTnVMBkvlxTnFPYvTIX.jpg', '$2y$10$jqTYF48YY5v8VYHgA1UKj.FK/9fQfnAMGNn4fWzkuaAjq/BNRZCRe', 'Vadodara', 11, 5.0, 'master', 130.00, '3', '3', '3', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:33:50', 0),
-(12, 'Deepak Nair', 'deepak11@example.com', '9876543220', 'ZOxUJPcq3kYD5Lj8h4t2We90Dg2A954cGFSBg9dq.jpg', '$2y$10$SYr3nAPheeEc9u0Zj7JKtu2hVQn4YGRCNV0eAE8bsGExroOYyu1rK', 'Kochi', 6, 4.3, 'senior', 65.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:06', 0),
-(13, 'Meera Iyer', 'meera12@example.com', '9876543221', 'sRNEVw4V0XXq3hCVSeY9HMmiH3wVDb58OMKARkjF.jpg', '$2y$10$6zcOYhtOxArOrw1JCEJ/G.1tpwvLcmd/NIdrhn782o3kHkSCtF8y2', 'Chennai', 8, 4.8, 'master', 115.00, '3', '1', '3', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:20', 0),
-(14, 'Arjun Reddy', 'arjun13@example.com', '9876543222', 'l9u8c1WuZjA6dpaUzzTFPWZnzOh2By35uvGcyl6O.jpg', '$2y$10$4BHiTyEr5fjmXJ6o3BJ72uFCRIvnA.izYU0fQk7kK.AnpN8DKowMK', 'Hyderabad', 5, 4.2, 'core', 55.00, '1', '2', '1', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:36', 0),
-(15, 'Simran Kaur', 'simran14@example.com', '9876543223', 'LMQhAgWuECRgrrBmkD97yweuXfSKYAZLH5xFPUh8.jpg', '$2y$10$PumzXtKSQTchNTCCPct3s.ojcwhAiv0ljKiwq2gFgQ2SsbdNKDMoi', 'Amritsar', 7, 4.6, 'senior', 85.00, '2', '3', '2', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:50', 0),
-(16, 'Nikhil Jain', 'nikhil15@example.com', '9876543224', 'uLQn1UtAk4N6BwOCbmqHz8GdMKCHg7mkoAt6iomp.jpg', '$2y$10$Shu3a3VjZYPzfw06xTlMqeaQDzKOor7SN2EZLH5BEY6vvkS.k0g2m', 'Indore', 3, 4.0, 'core', 42.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:55:31', 1);
+INSERT INTO `guides` (`id`, `name`, `email`, `phone`, `profile_image`, `password`, `address`, `experience`, `rating`, `guide_level`, `price_per_session`, `speciality_id`, `tool_id`, `skill_id`, `reading_style_id`, `status`, `created_at`, `updated_at`, `display_in_home`, `is_online`, `last_seen`) VALUES
+(1, 'Lima Mohanty', 'mohantylima71@gmail.com', '8763447921', '41BRZlBauiUJmYmtK6JOSQ8Arefxw7LScuYytxAu.jpg', '$2y$10$s/g73Wp0ZcJWUtUaioc4XuE5DSnCjePh746vPKoe4foKf9o5dgExy', 'India', 10, 5.0, 'senior', 2.00, '3,4,5,6,7,8,9,10,11,12,13,14,15', '1,2,3,4,5,6,7', '1,2,3,4,5,6', '1,2,3', 1, '2026-03-18 09:51:30', '2026-03-19 09:27:17', 0, 0, NULL),
+(2, 'Rahul Sharma', 'rahul1@example.com', '9876543210', 'Clyc3SZSGROd4l0XORQjXkdSbgU6Ful5PrlIg6BB.jpg', '$2y$10$FcHIVELebGMQjorDVuZKE.k1qPI3X5ZAphiYuMSwKS7q.jKGyHK36', 'Mumbai', 5, 4.5, 'core', 50.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:44:37', 1, 0, NULL),
+(3, 'Priya Singh', 'priya2@example.com', '9876543211', 'ZFndPfISSHfjquujutO83lfXi8Fxh22PYMVsTzM1.jpg', '$2y$10$Z32kSW14RnMhQPAbPDNdj.jGfY.SUnGs4djeupVpzTqIZE5lOFFmO', 'Delhi', 8, 4.8, 'senior', 80.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:26', 1, 0, NULL),
+(4, 'Amit Verma', 'amit3@example.com', '9876543212', 'LmZ7k3Q9p96MqNHHz8RvRpTTt5XCj9vtkLMalC6N.jpg', '$2y$10$hq9mgey6bj5QORwxP1HdweHHpIXT5jWu8SkZ0Q7XM90d/P8FI7hPC', 'Bangalore', 3, 4.2, 'core', 40.00, '1', '3', '1', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:27', 1, 0, NULL),
+(5, 'Sneha Patel', 'sneha4@example.com', '9876543213', 'mBPyq7H57dMYo22VCHOmWtz7PRCCBnCdZSA2UCRB.jpg', '$2y$10$V1pHE9/vAM1spBWoGQM2f./3XugWHfYy6cMFmuP3wKu09L1QJTry6', 'Ahmedabad', 10, 4.9, 'master', 120.00, '3', '1', '3', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:41:28', 1, 0, NULL),
+(6, 'Rohit Kumar', 'rohit5@example.com', '9876543214', 'C2KVOybyy1Zx84R0e8GA3INmsIwyJcbXFX00xA0X.jpg', '$2y$10$u3kq/4KOzldGUEYG2aHH..oIMb5pCKCvTTF6QiqivhNaSjvZ8xY1S', 'Pune', 6, 4.4, 'senior', 70.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:12', 0, 0, NULL),
+(7, 'Neha Gupta', 'neha6@example.com', '9876543215', 'KX0JAqbkj7AAwcEWUpne4L84bzXu1ryITHhLkeAI.jpg', '$2y$10$C59wXE1G4m01.jI4QabuZOZl7QQGx/hOCGe0cCNOAp5a7yIWkw/tu', 'Jaipur', 4, 4.1, 'core', 45.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:26', 0, 0, NULL),
+(8, 'Vikas Yadav', 'vikas7@example.com', '9876543216', 'OmKIkhtV0G7DHqXHISM5gq4q7M85O7a0fTWlVQph.jpg', '$2y$10$ztVn7bEC8JZnKvPq/bT3g.tHkVNbaoKKSZVU2dL0tpvD0cAxPXPYi', 'Lucknow', 7, 4.6, 'senior', 75.00, '2', '3', '2', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:40', 0, 0, NULL),
+(9, 'Pooja Mehta', 'pooja8@example.com', '9876543217', 'DKjTgfKXuCjHTfNkFz36G0qiKrx3xuT2nkJZX1cK.jpg', '$2y$10$YWzXIJHe4azgSooKD46svONe6F45EvdbPjOid7/ECoujspwoxCVtm', 'Surat', 9, 4.7, 'master', 110.00, '3', '2', '3', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:32:56', 0, 0, NULL),
+(10, 'Karan Malhotra', 'karan9@example.com', '9876543218', 'SiPn9hKaBRFQauzOuom5w0TGQUiDszXgvV4yVhi6.jpg', '$2y$10$SXMIAmCW2zlBTVDN6V7tGuytHZZhb5XJrNjZm1zyQRFswHK/2Cw8m', 'Chandigarh', 2, 3.9, 'core', 35.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:33:28', 0, 0, NULL),
+(11, 'Anjali Desai', 'anjali10@example.com', '9876543219', 'XtuVcQmLahFbYzk30oKU4PTnVMBkvlxTnFPYvTIX.jpg', '$2y$10$jqTYF48YY5v8VYHgA1UKj.FK/9fQfnAMGNn4fWzkuaAjq/BNRZCRe', 'Vadodara', 11, 5.0, 'master', 130.00, '3', '3', '3', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:33:50', 0, 0, NULL),
+(12, 'Deepak Nair', 'deepak11@example.com', '9876543220', 'ZOxUJPcq3kYD5Lj8h4t2We90Dg2A954cGFSBg9dq.jpg', '$2y$10$SYr3nAPheeEc9u0Zj7JKtu2hVQn4YGRCNV0eAE8bsGExroOYyu1rK', 'Kochi', 6, 4.3, 'senior', 65.00, '2', '2', '2', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:06', 0, 0, NULL),
+(13, 'Meera Iyer', 'meera12@example.com', '9876543221', 'sRNEVw4V0XXq3hCVSeY9HMmiH3wVDb58OMKARkjF.jpg', '$2y$10$6zcOYhtOxArOrw1JCEJ/G.1tpwvLcmd/NIdrhn782o3kHkSCtF8y2', 'Chennai', 8, 4.8, 'master', 115.00, '3', '1', '3', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:20', 0, 0, NULL),
+(14, 'Arjun Reddy', 'arjun13@example.com', '9876543222', 'l9u8c1WuZjA6dpaUzzTFPWZnzOh2By35uvGcyl6O.jpg', '$2y$10$4BHiTyEr5fjmXJ6o3BJ72uFCRIvnA.izYU0fQk7kK.AnpN8DKowMK', 'Hyderabad', 5, 4.2, 'core', 55.00, '1', '2', '1', '2', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:36', 0, 0, NULL),
+(15, 'Simran Kaur', 'simran14@example.com', '9876543223', 'LMQhAgWuECRgrrBmkD97yweuXfSKYAZLH5xFPUh8.jpg', '$2y$10$PumzXtKSQTchNTCCPct3s.ojcwhAiv0ljKiwq2gFgQ2SsbdNKDMoi', 'Amritsar', 7, 4.6, 'senior', 85.00, '2', '3', '2', '3', 1, '2026-03-19 14:59:07', '2026-03-19 09:34:50', 0, 0, NULL),
+(16, 'Nikhil Jain', 'nikhil15@example.com', '9876543224', 'uLQn1UtAk4N6BwOCbmqHz8GdMKCHg7mkoAt6iomp.jpg', '$2y$10$Shu3a3VjZYPzfw06xTlMqeaQDzKOor7SN2EZLH5BEY6vvkS.k0g2m', 'Indore', 3, 4.0, 'core', 42.00, '1', '1', '1', '1', 1, '2026-03-19 14:59:07', '2026-03-19 09:55:31', 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -376,30 +378,33 @@ INSERT INTO `horoscope_monthly` (`id`, `sign_id`, `month`, `year`, `prediction`,
 CREATE TABLE `horoscope_signs` (
   `sign_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
+  `date_range` varchar(60) DEFAULT NULL,
   `slug` varchar(50) NOT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `traits` text DEFAULT NULL,
+  `personality` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `horoscope_signs`
 --
 
-INSERT INTO `horoscope_signs` (`sign_id`, `name`, `slug`, `icon`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Aries', 'aries', NULL, NULL, NULL, NULL),
-(2, 'Taurus', 'taurus', NULL, NULL, NULL, NULL),
-(3, 'Gemini', 'gemini', NULL, NULL, NULL, NULL),
-(4, 'Cancer', 'cancer', NULL, NULL, NULL, NULL),
-(5, 'Leo', 'leo', NULL, NULL, NULL, NULL),
-(6, 'Virgo', 'virgo', NULL, NULL, NULL, NULL),
-(7, 'Libra', 'libra', NULL, NULL, NULL, NULL),
-(8, 'Scorpio', 'scorpio', NULL, NULL, NULL, NULL),
-(9, 'Sagittarius', 'sagittarius', NULL, NULL, NULL, NULL),
-(10, 'Capricorn', 'capricorn', NULL, NULL, NULL, NULL),
-(11, 'Aquarius', 'aquarius', '30SRFK9fabP5Rxb2kJRc8LCHnOM1G66OKdnildWB.webp', 'AHXhSXkmRyN4X3l4Udiwaewz6cTEmZFYdvAKi8CO.png', NULL, NULL),
-(12, 'Pisces', 'pisces', 'X0QyZifW5rFYVNnUcRRQzZh3xxDgJxy0B2tNkoX4.webp', 'iJUUUzBriJYOn93j6UjW4MBy99m1dfe4oRXWgv6t.png', NULL, NULL);
+INSERT INTO `horoscope_signs` (`sign_id`, `name`, `date_range`, `slug`, `icon`, `image`, `created_at`, `updated_at`, `traits`, `personality`) VALUES
+(1, 'Aries', 'Mar 21 – Apr 19', 'aries', 'aries.png', 'aries.jpg', NULL, NULL, 'Energetic, adventurous, courageous.', ' An Aries pet is a bundle of energy and enthusiasm, always ready for play and\n                                    exploration. They thrive on excitement and can be a bit fearless. Expect a spirited\n                                    companion who loves to chase toys and embark on new adventures.'),
+(2, 'Taurus', 'Apr 20 – May 20', 'taurus', 'taurus.png', 'taurus.jpg', NULL, NULL, 'Loyal, patient, affectionate.', 'A Taurus pet is reliable and enjoys routine. They are very loving and tend to\n                                    develop a strong bond with their owners. Expect a pet that enjoys lounging around\n                                    but can also indulge in pampering and play.'),
+(3, 'Gemini', 'May 21 – Jun 20', 'gemini', 'gemini.png', 'gemini.jpg', NULL, NULL, 'Curious, sociable, adaptable.', 'A Gemini pet is playful and loves exploration. They thrive on social interactions,\n                                    so they\'re likely to bond with family members and other pets. Their curious nature\n                                    keeps them engaged and fun-loving.'),
+(4, 'Cancer', 'Jun 21 – Jul 22', 'cancer', 'cancer.png', 'cancer.jpg', NULL, NULL, 'Nurturing, sensitive, protective.', 'A Cancer pet is affectionate and sensitive to moods. They often seek comfort and\n                                    enjoy cuddling. Expect a loyal companion who loves to be close to you and is very in\n                                    tune with your emotions.'),
+(5, 'Leo', 'Jul 23 – Aug 22', 'leo', 'leo.png', 'leo.jpg', NULL, NULL, 'Confident, charismatic, playful.', 'A Leo pet craves attention and enjoys being the center of the spotlight. They are\n                                    playful, often showing off their skills. Expect a bold and loving companion that\n                                    enjoys playful antics and engaging activities.'),
+(6, 'Virgo', 'Aug 23 – Sep 22', 'virgo', 'virgo.png', 'virgo.jpg', NULL, NULL, 'Intelligent, cautious, particular.', ' A Virgo pet is observant and tends to be meticulous about their surroundings. They\n                                    are intelligent and can be easy to train. Expect a practical pet that thrives on\n                                    routine and appreciates cleanliness.'),
+(7, 'Libra', 'Sep 23 – Oct 22', 'libra', 'libra.png', 'libra.jpg', NULL, NULL, 'Charming, sociable, peaceful.', 'A Libra pet is friendly and enjoys being around people and other animals. They seek\n                                    harmony and will often act as peacemakers in a multi-pet household. Expect a\n                                    charming pet who loves companionship.'),
+(8, 'Scorpio', 'Oct 23 – Nov 21', 'scorpio', 'scorpio.png', 'scorpio.jpg', NULL, NULL, 'Intense, loyal, mysterious.', 'A Scorpio pet is passionate and often forms deep bonds with their owners. They can\n                                    be independent but are also incredibly loyal companions. Expect a pet with a strong\n                                    personality that may have mood swings but deeply cares for their family.'),
+(9, 'Sagittarius', 'Nov 22 – Dec 21', 'sagittarius', 'sagitarius.png', 'sagitarius.jpg', NULL, NULL, 'Adventurous, optimistic, free-spirited.', ' A Sagittarius pet is always up for an adventure and loves to explore. They are\n                                    optimistic and often have a playful approach to life. Expect a lively companion that\n                                    thrives in outdoor activities and enjoys travel.'),
+(10, 'Capricorn', 'Dec 22 – Jan 19', 'capricorn', 'capricorn.png', 'capricorn.jpg', NULL, NULL, 'Disciplined, reliable, ambitious.', ' A Capricorn pet is practical and grounded. They often show maturity beyond their\n                                    years and can be very trainable. Expect a loyal companion that enjoys structure and\n                                    is always there when you need them.'),
+(11, 'Aquarius', 'Jan 20 – Feb 18', 'aquarius', 'aquarius.png', 'aquarius.jpg', NULL, NULL, 'Independent, innovative, friendly.', ' An Aquarius pet is quirky and often has an independent streak. They enjoy social\n                                    interactions but also value their alone time. Expect a unique personality that\n                                    surprises you with its cleverness and charm.'),
+(12, 'Pisces', 'Feb 19 – Mar 20', 'pisces', 'pices.png', 'pices.jpg', NULL, NULL, ' Compassionate, imaginative, sensitive.', 'A Pisces pet is gentle and often has an intuitive understanding of feelings. They\n                                    are loving and may prefer quiet environments. Expect a dreamy companion that enjoys\n                                    peaceful moments and soulful connection.');
 
 -- --------------------------------------------------------
 
@@ -623,6 +628,8 @@ INSERT INTO `skills` (`id`, `name`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `specialities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -631,22 +638,22 @@ CREATE TABLE `specialities` (
 -- Dumping data for table `specialities`
 --
 
-INSERT INTO `specialities` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Career & Finance', '2026-03-17 08:40:52', '2026-03-17 08:40:52'),
-(2, 'Conflict & Resolution', '2026-03-17 08:42:07', '2026-03-17 08:42:07'),
-(3, 'Decision Making', '2026-03-17 08:42:19', '2026-03-17 08:42:19'),
-(4, 'Dream Exploration', '2026-03-17 08:42:27', '2026-03-17 08:42:27'),
-(5, 'Energy Healer', '2026-03-17 08:42:34', '2026-03-17 08:42:34'),
-(6, 'Future Outlook', '2026-03-17 08:42:40', '2026-03-17 08:42:40'),
-(7, 'Grief', '2026-03-17 08:42:47', '2026-03-17 08:42:47'),
-(8, 'Health & Wellness', '2026-03-17 08:42:55', '2026-03-17 08:42:55'),
-(9, 'Lost Items', '2026-03-17 08:43:02', '2026-03-17 08:43:02'),
-(10, 'Lost Loved Ones & Pets', '2026-03-17 08:43:10', '2026-03-17 08:43:10'),
-(11, 'Love & Relationships', '2026-03-17 08:43:19', '2026-03-17 08:43:19'),
-(12, 'Past Lives', '2026-03-17 08:43:29', '2026-03-17 08:43:29'),
-(13, 'Personal Growth', '2026-03-17 08:43:40', '2026-03-17 08:43:40'),
-(14, 'Pets & Animals', '2026-03-17 08:43:46', '2026-03-17 08:43:46'),
-(15, 'Spirituality & Inner Guidance', '2026-03-17 08:43:56', '2026-03-17 08:50:28');
+INSERT INTO `specialities` (`id`, `name`, `slug`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Career & Finance', 'career-finance', 'c89uDRg0s9xS8JnOUm4OIryAruxIpk6BptpD2xni.jpg', '2026-03-17 08:40:52', '2026-03-20 01:35:06'),
+(2, 'Conflict & Resolution', 'conflict-resolution', 'f3Yqb0jISgCasC3vMrtRS4Dl4C64vcNxMVth9LCb.jpg', '2026-03-17 08:42:07', '2026-03-20 01:34:56'),
+(3, 'Decision Making', 'decision-making', 'PRkmURUS0cp6nONzCAgnP0iAb5RgJ5Nvkbzjwl9J.jpg', '2026-03-17 08:42:19', '2026-03-20 01:34:43'),
+(4, 'Dream Exploration', 'dream-exploration', 'ywSlbP7OS0eBz7LRM3u8zFyNvwEikNYRgG8rkt6h.jpg', '2026-03-17 08:42:27', '2026-03-20 01:34:29'),
+(5, 'Energy Healer', 'energy-healer', 'rHd7M3I6CWejLEhWXnv0HSM5wgRKeewOO50qcAT9.jpg', '2026-03-17 08:42:34', '2026-03-20 01:34:20'),
+(6, 'Future Outlook', 'future-outlook', 'OLiwHSYfCPEbHn9VSleN0pXMIeQtLWTVHVHzpGF5.jpg', '2026-03-17 08:42:40', '2026-03-20 01:34:00'),
+(7, 'Grief', 'grief', 'QrIVQ4uzXJjZuzuAQLsuqIPILY4Dn49hLiL7cMqe.jpg', '2026-03-17 08:42:47', '2026-03-20 01:33:53'),
+(8, 'Health & Wellness', 'health-wellness', 'Zzb7BMoE7ieTLsx35ktg6CjcKqQHvxxeC50yJxeV.jpg', '2026-03-17 08:42:55', '2026-03-20 01:33:44'),
+(9, 'Lost Items', 'lost-items', 'IswSHFT8ivpI8OhpnSAdlYt69eLWT4vi57ZK3oCh.jpg', '2026-03-17 08:43:02', '2026-03-20 01:33:36'),
+(10, 'Lost Loved Ones & Pets', 'lost-loved-ones-pets', 'Op7sKHPvJr3cN6ytD2bY1eduS2nxADYc36CO0bfi.jpg', '2026-03-17 08:43:10', '2026-03-20 01:33:27'),
+(11, 'Love & Relationships', 'love-relationships', 'QEEV30D1epDjfw4rUPRZNj5rsTCNCegWN2kEWLxT.jpg', '2026-03-17 08:43:19', '2026-03-20 01:33:19'),
+(12, 'Past Lives', 'past-lives', 'xpBI6IhWAcZLPTWeMSbf4j9BwMuBeI3LS4tJqK6e.jpg', '2026-03-17 08:43:29', '2026-03-20 01:33:09'),
+(13, 'Personal Growth', 'personal-growth', 'lgSv8gdmxSibK26ojRichtaaPQ0cQiEM0qMBvpxf.jpg', '2026-03-17 08:43:40', '2026-03-20 01:33:01'),
+(14, 'Pets & Animals', 'pets-animals', 'JPwFQhc90EXMqYgmNFE073NJAqFD9qBRHREsiWqz.jpg', '2026-03-17 08:43:46', '2026-03-20 01:32:53'),
+(15, 'Spirituality & Inner Guidance', 'spirituality-inner-guidance', 'ipqt2VwGSHi15XZhmhgDlJtIITvPUg1rvc7r1THI.jpg', '2026-03-17 08:43:56', '2026-03-20 01:32:41');
 
 -- --------------------------------------------------------
 
