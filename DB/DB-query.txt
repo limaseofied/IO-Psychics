@@ -53,6 +53,7 @@ ALTER TABLE `guides` ADD `display_in_home` INT NOT NULL DEFAULT '0' AFTER `updat
 ALTER TABLE guides  ADD COLUMN is_online TINYINT(1) DEFAULT 0;
 ALTER TABLE guides  ADD COLUMN last_seen DATETIME DEFAULT NULL;
 ALTER TABLE horoscope_signs ADD COLUMN traits TEXT,ADD COLUMN personality TEXT;
+ALTER TABLE `specialities` ADD `slug` VARCHAR(255) NULL DEFAULT NULL AFTER `name`, ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `slug`;
 
 --------------------
 SELECT *,

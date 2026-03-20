@@ -65,7 +65,7 @@
 
                         <form method="POST"
                               action="{{ route('admin.specialities.update', $specialities->id) }}"
-                              class="form-horizontal">
+                              class="form-horizontal"  enctype="multipart/form-data">
 
                             @csrf
                             <div class="form-group">
@@ -81,6 +81,25 @@
                                            required>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label">Image</label>
+
+                                <div class="col-lg-8">
+
+                                    @if($specialities->image)
+                                        <div style="margin-bottom:10px;">
+                                            <img src="{{ asset('public/storage/uploads/specialities/'.$specialities->image) }}"
+                                                 width="50">
+                                        </div>
+                                    @endif
+
+                                    <input type="file"
+                                           name="image"
+                                           class="form-control">
+                                </div>
+                            </div>
+
 
                             <div class="form-group text-center mt-4">
                                 <button type="submit" class="btn btn-success">

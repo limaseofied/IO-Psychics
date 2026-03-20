@@ -70,7 +70,7 @@
                         <form method="POST"
                               action="{{ route('admin.specialities.store') }}"
                               class="form-horizontal"
-                              id="SpecialitiesForm">
+                              id="SpecialitiesForm"  enctype="multipart/form-data">
 
                             @csrf
 
@@ -89,6 +89,18 @@
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="col-lg-4 control-label">
+                                    Image
+                                </label>
+
+                                <div class="col-lg-8">
+                                    <input type="file"
+                                           name="image"
+                                           class="form-control">
                                 </div>
                             </div>
 

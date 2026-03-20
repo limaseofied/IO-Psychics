@@ -46,6 +46,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Created On</th>
                         <th>Action</th>
                     </tr>
@@ -55,6 +56,12 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $s->name }}</td>
+                              <td>
+                                 @if($s->image)
+                                    <img src="{{ asset('public/storage/uploads/specialities/'.$s->image) }}" width="60">
+                                @endif
+
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($s->created_at)->format('d-m-Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.specialities.edit', $s->id) }}" class="btn btn-xs btn-warning">

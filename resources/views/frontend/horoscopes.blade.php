@@ -245,7 +245,7 @@
                     </div>
                 </div>
             </div>
-            @foreach ($specialities as $sp)
+           
                 
             <div class="horoscopes-categories pt-80">
                 <div class="section-title align-items-center text-center">
@@ -253,99 +253,17 @@
                     <h2 class="primary-title">Categories</h2>
                 </div>
                 <div class="owl-carousel owl-theme owl-categories-slider primary-owl-carousel">
+                     @foreach ($specialities as $sp)
                     <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/career.webp" alt="">
-                            <span>Career & Finance</span>
+                        <a href="{{'guides?category='.$sp->slug}}" class="categories-slider-box">
+                            <img src="{{asset('public/storage/uploads/specialities/'.$sp->image)}}" alt="{{$sp->name}}">
+                            <span>{{$sp->name}}</span>
                         </a>
                     </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/conflict.webp" alt="">
-                            <span>Conflict & Resolution</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/decision.webp" alt="">
-                            <span>Decision Making</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/dream.webp" alt="">
-                            <span>Dream Exploration</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/energyheal.webp" alt="">
-                            <span>Energy Healer</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/future.webp" alt="">
-                            <span>Future Outlook</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/grief.webp" alt="">
-                            <span>Grief</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/health.webp" alt="">
-                            <span>Health & Wellness</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/lost.webp" alt="">
-                            <span>Lost Items</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/lostlovedones.webp" alt="">
-                            <span>Lost Loved Ones & Pets</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/love.webp" alt="">
-                            <span>Love & Relationships</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/past.webp" alt="">
-                            <span>Past Lives</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/growth.webp" alt="">
-                            <span>Personal Growth</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/pets.webp" alt="">
-                            <span>Pets & Animals</span>
-                        </a>
-                    </div>
-                    <div class="items">
-                        <a href="#" class="categories-slider-box">
-                            <img src="./images/spirit.webp" alt="">
-                            <span>Spirituality & Inner Guidance</span>
-                        </a>
-                    </div>
+                     @endforeach
                 </div>
             </div>
-            @endforeach
+           
         </div>
         <div class="custom-faq-bg pt-80">
             <div class="section-title align-items-center text-white">
