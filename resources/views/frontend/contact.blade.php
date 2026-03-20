@@ -48,58 +48,86 @@
             </div>
             <div class="contact-page-form pb-5">
                 <div class="contact-form">
-                    <form action="">
-                        <div class="row">
-                            <div class="mb-3 col-md-12 col-lg-6 contact-form-col">
-                                <label for="user-type" class="form-label">
-                                    User Type
-                                    <span> (Required) </span>
-                                </label>
-                                <select class="form-select" aria-label="Default select example" id="user-type"
-                                    name="user-type">
-                                    <option value="user-type1" selected>I am a Seeker</option>
-                                    <option value="user-type1">I am a Guide</option>
-                                    <option value="user-type">I have not created an account yet</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 col-md-12 col-lg-6 contact-form-col">
-                                <label for="contacting-about" class="form-label">
-                                    I am contacting IO Psychic about
-                                    <span> (Required) </span>
-                                </label>
-                                <select class="form-select" aria-label="Default select example" id="contacting-about"
-                                    name="contacting-about">
-                                    <option value="contacting-about1" selected>Account Support</option>
-                                    <option value="contacting-about2">Billing Inquiry</option>
-                                    <option value="contacting-about3">My Reading</option>
-                                    <option value="contacting-about4">Technical Support</option>
-                                    <option value="contacting-about5">How To pick an Advisor</option>
-                                    <option value="contacting-about6">Other</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 col-md-12 col-lg-12 contact-form-col">
-                                <label for="your-name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="your-name" name="your-name">
-                            </div>
-                            <div class="mb-3 col-md-12 col-lg-12 contact-form-col">
-                                <label for="email_id" class="form-label">
-                                    Your Email
-                                    <span> (Required) </span>
-                                </label>
-                                <input type="email" class="form-control" id="email_id" name="email_id"
-                                    aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3 col-md-12 contact-form-col contact-form-textarea">
-                                <label for="message" class="form-label">
-                                    Message
-                                    <span> (Required) </span>
-                                </label>
-                                <textarea class="form-control" id="message" name="message" rows="10"
-                                    type="text"></textarea>
-                            </div>
+                  <form action="{{ route('contact.submit') }}" method="POST">
+                    @csrf
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
-                        <button type="submit" class="contact-form-btn">Submit</button>
-                    </form>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <div class="row">
+
+                        {{-- User Type --}}
+                        <div class="mb-3 col-md-12 col-lg-6 contact-form-col">
+                            <label class="form-label">User Type <span>(Required)</span></label>
+                            <select class="form-select" name="user_type" id="user_type" required>
+                                <option value="">---Select -- </option>
+                                <option value="Seeker">I am a Seeker</option>
+                                <option value="Guide">I am a Guide</option>
+                                <option value="Guest">I have not created an account yet</option>
+                            </select>
+                        </div>
+
+                        {{-- Subject --}}
+                        <div class="mb-3 col-md-12 col-lg-6 contact-form-col">
+                            <label class="form-label">I am contacting about <span>(Required)</span></label>
+                           @php
+                            $subjects = [
+                                'Account Support',
+                                'Billing Inquiry',
+                                'My Reading',
+                                'Technical Support',
+                                'Advisor Help',
+                                'Other'
+                            ];
+                            @endphp
+
+                            <select class="form-select" name="subject" id="subject" required>
+                                <option value="">---Select---</option>
+
+                                @foreach($subjects as $item)
+                                    <option value="{{ $item }}" {{ old('subject') == $item ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Name --}}
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" name="name"  id="name" required value="{{ old('name') }}">
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Your Email <span>(Required)</span></label>
+                            <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" required>
+                        </div>
+
+                        {{-- Message --}}
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Message <span>(Required)</span></label>
+                            <textarea class="form-control" name="message" id="message" rows="6" required maxlength="500">{{ old('message') }}</textarea>
+                            Note: Max 500 characters
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="contact-form-btn">Submit</button>
+                </form>
                 </div>
             </div>
         </div>

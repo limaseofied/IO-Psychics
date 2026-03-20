@@ -12,6 +12,7 @@ use App\Models\Speciality;
 use App\Mail\ContactFormSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+
 class HomeController extends Controller
 {
     public function index()
@@ -75,6 +76,31 @@ class HomeController extends Controller
      public function become_gifted_guide() {
        return view('frontend.become-gifted-guide');
     }
+
+    
+
+public function contactSubmit(Request $request)
+{
+    $request->validate([
+        'user_type' => 'required|string',
+        'subject' => 'required|string',
+        'name' => 'nullable|string|max:150',
+        'email' => 'required|email|max:150',
+        'message' => 'required|string|max:500',
+    ]);
+
+    DB::table('contacts')->insert([
+        'user_type' => $request->user_type,
+        'subject' => $request->subject,
+        'name' => $request->name,
+        'email' => $request->email,
+        'message' => $request->message,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return redirect()->back()->with('success', 'Your message has been sent successfully!');
+}
 
     
 

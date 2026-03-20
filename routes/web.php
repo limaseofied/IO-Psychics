@@ -195,6 +195,7 @@ Route::get('/how-it-works', [HomeController::class, 'howItWorks'])->name('how.it
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::post('/contact-submit', [HomeController::class, 'contactSubmit'])->name('contact.submit');
 Route::get('/become-gifted-guide', [HomeController::class, 'become_gifted_guide'])->name('become-gifted-guide');
 Route::get('/help-center', [HomeController::class, 'help_center'])->name('help-center');
 // Free Trial
