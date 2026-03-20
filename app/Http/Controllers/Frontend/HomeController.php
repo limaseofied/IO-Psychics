@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contacts;
 use App\Models\HoroscopeSign;
+use App\Models\Faq;
 use App\Models\Speciality;
 use App\Mail\ContactFormSubmitted;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $faq = Faq::where('display_in_home',1)->get();
+        return view('frontend.index', compact('faq'));
     }
 
     public function plans() {
@@ -29,7 +31,8 @@ class HomeController extends Controller
     public function horoscopes() {
         $signs = HoroscopeSign::all();
         $specialities = Speciality::all();
-        return view('frontend.horoscopes', compact('signs','specialities'));
+        $faq = Faq::where('category','Horoscope')->get();
+        return view('frontend.horoscopes', compact('signs','specialities','faq'));
     }
 
     public function tarot() {
